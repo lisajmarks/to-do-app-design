@@ -24,6 +24,7 @@ const Profile = (props) => {
     name: "",
     number: "",
     email: "",
+    currentScore: 0,
   });
 
   const db = getDatabase();
@@ -72,7 +73,7 @@ const Profile = (props) => {
       if (snapshot.val() !== null) {
         setProfileData(snapshot.val());
       } else {
-        setProfileData({ email: "", name: "", number: "" });
+        setProfileData({ email: "", name: "", number: "", currentScore: 0 });
       }
     });
   }, []);
@@ -157,7 +158,7 @@ const Profile = (props) => {
         />
       ) : (
         <Pressable onPress={() => handleNameEdit()}>
-          <Text>{profiledata.name ? profiledata.name : "No name saved"}</Text>
+          <Text>{profiledata.name ? profiledata.name : "Name"}</Text>
         </Pressable>
       )}
 
@@ -165,16 +166,14 @@ const Profile = (props) => {
         <TextInput
           placeholder="Phone Number"
           style={styles.input}
-          onChangeText={(str) => onChangeText(str, "number")}
+          onChangeText={(str) => onChangeText(str, "Number")}
           value={number}
           onBlur={() => onSubmitNumber()}
           keyboardType="numeric"
         />
       ) : (
         <Pressable onPress={() => handleNumberEdit()}>
-          <Text>
-            {profiledata.number ? profiledata.number : "No phone number"}
-          </Text>
+          <Text>{profiledata.number ? profiledata.number : "Phone"}</Text>
         </Pressable>
       )}
 

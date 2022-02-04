@@ -86,14 +86,6 @@ const Profile = (props) => {
     }
   }, [props.userId]);
 
-  const onSubmitName = () => {
-    set(profileRef, {
-      name: profiledata.name,
-      email: profiledata.email,
-      number: profiledata.number,
-    }).catch((err) => console.log(err));
-  };
-
   const onSubmitEmail = () => {
     const credential = EmailAuthProvider.credential(
       user.providerData[0].email,
@@ -109,12 +101,8 @@ const Profile = (props) => {
       .catch((err) => console.log("Nooooooooooo", err));
   };
 
-  const onSubmitNumber = () => {
-    set(profileRef, {
-      name: profiledata.name,
-      email: profiledata.email,
-      number: profiledata.number,
-    }).catch((err) => console.log(err));
+  const onSubmit = () => {
+    set(profileRef, profiledata).catch((err) => console.log(err));
   };
 
   const onChangeText = (text, field) => {
@@ -153,7 +141,7 @@ const Profile = (props) => {
           placeholder="Name"
           style={styles.input}
           onChangeText={(str) => onChangeText(str, "name")}
-          onBlur={() => onSubmitName()}
+          onBlur={() => onSubmit()}
           value={name}
         />
       ) : (
@@ -168,7 +156,7 @@ const Profile = (props) => {
           style={styles.input}
           onChangeText={(str) => onChangeText(str, "Number")}
           value={number}
-          onBlur={() => onSubmitNumber()}
+          onBlur={() => onSubmit()}
           keyboardType="numeric"
         />
       ) : (

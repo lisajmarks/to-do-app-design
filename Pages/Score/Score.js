@@ -4,13 +4,14 @@ import { getDatabase, ref, onValue, set } from "firebase/database";
 
 const Score = (props) => {
   const [totalPoints, setTotalPoints] = useState(0);
+  const [allProfiles, setAllProfiles] = useState([]);
+  const [highScore, setHighScore] = useState(0);
+
   const db = getDatabase();
   //get database to db
   const reference = ref(db, "profiles/" + props.userId);
   //setting word reference to mean "go to this pathway (db > profiles > userId)"
-  const [allProfiles, setAllProfiles] = useState([]);
   const allProfilesRef = ref(db, "profiles/");
-  const [highScore, setHighScore] = useState(0);
 
   useEffect(() => {
     onValue(reference, (snapshot) => {

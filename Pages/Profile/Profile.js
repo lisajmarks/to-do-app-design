@@ -25,8 +25,8 @@ const Profile = (props) => {
   const user = auth.currentUser;
 
   const [profiledata, setProfileData] = useState({
-    name: "",
-    number: "",
+    name: user.providerData[0].displayName,
+    number: user.providerData[0].phoneNumber,
     email: user.providerData[0].email,
     currentScore: 0,
   });
@@ -69,6 +69,10 @@ const Profile = (props) => {
       setEmailEdit(!emailEdit);
     }
   };
+
+  useEffect(() => {
+    console.log(user.providerData);
+  }, []);
 
   // useEffect(() => {
   //   onValue(profileRef, (snapshot) => {

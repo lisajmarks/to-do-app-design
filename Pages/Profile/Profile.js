@@ -14,12 +14,11 @@ const Profile = (props) => {
   const [nameEdit, setNameEdit] = useState(false);
   const [numberEdit, setNumberEdit] = useState(false);
   const [emailEdit, setEmailEdit] = useState(false);
-  const [name, setName] = useState("");
+
   const [number, setNumber] = useState("");
-  const [email, setEmail] = useState("");
+
   const [newPassword, setNewPassword] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
-  const [data, updateData] = useState({ name: "" });
 
   const auth = getAuth();
   const user = auth.currentUser;
@@ -34,22 +33,9 @@ const Profile = (props) => {
   const db = getDatabase();
   const profileRef = ref(db, "profiles/" + props.userId);
 
-  const handleNameEdit = (name) => {
-    if (nameEdit) {
-      if (name !== "") {
-        updateData(name);
-        setNameEdit(!nameEdit);
-      }
-    } else {
-      setName(name);
-      setNameEdit(!nameEdit);
-    }
-  };
-
   const handleNumberEdit = (number) => {
     if (numberEdit) {
       if (number !== "") {
-        updateData(number);
         setNumberEdit(!numberEdit);
       }
     } else {
@@ -58,31 +44,9 @@ const Profile = (props) => {
     }
   };
 
-  const handleEmailEdit = (email) => {
-    if (emailEdit) {
-      if (email !== "") {
-        updateData(email);
-        setEmailEdit(!emailEdit);
-      }
-    } else {
-      setEmail(email);
-      setEmailEdit(!emailEdit);
-    }
-  };
-
   useEffect(() => {
-    console.log(user.providerData);
+    console.log("profiledata object", profiledata);
   }, []);
-
-  // useEffect(() => {
-  //   onValue(profileRef, (snapshot) => {
-  //     if (snapshot.val() !== null) {
-  //       setProfileData(snapshot.val());
-  //     } else {
-  //       setProfileData({ email: "", name: "", number: "", currentScore: 0 });
-  //     }
-  //   });
-  // }, []);
 
   useEffect(() => {
     if (props.userId === "") {
@@ -108,7 +72,19 @@ const Profile = (props) => {
   };
 
   const onSubmit = () => {
-    set(profileRef, profiledata).catch((err) => console.log(err));
+    // set(profileRef, profiledata).catch((err) => console.log(err));
+    updateProfile(auth.currentUser, {
+      displayName: "Jane Q. User",
+      photoURL: "https://example.com/jane-q-user/profile.jpg",
+    })
+      .then(() => {
+        // Profile updated!
+        // ...
+      })
+      .catch((error) => {
+        // An error occurred
+        // ...
+      });
   };
 
   const onChangeText = (text, field) => {
@@ -148,10 +124,10 @@ const Profile = (props) => {
           style={styles.input}
           onChangeText={(str) => onChangeText(str, "name")}
           onBlur={() => onSubmit()}
-          value={name}
+          value={profiledata.name === null ? "" : profiledata.name}
         />
       ) : (
-        <Pressable onPress={() => handleNameEdit()}>
+        <Pressable onPress={() => setNameEdit(!nameEdit)}>
           <Text>{profiledata.name ? profiledata.name : "Name"}</Text>
         </Pressable>
       )}
@@ -176,11 +152,11 @@ const Profile = (props) => {
           placeholder="Email"
           style={styles.input}
           onChangeText={(str) => onChangeText(str, "email")}
-          value={email}
+          value={profiledata.email}
           onBlur={() => onSubmitEmail()}
         />
       ) : (
-        <Pressable onPress={() => handleEmailEdit()}>
+        <Pressable onPress={() => setEmailEdit(!emailEdit)}>
           <Text>
             {profiledata.email ? profiledata.email : "No email saved"}
           </Text>

@@ -20,17 +20,19 @@ const Profile = (props) => {
   const [newPassword, setNewPassword] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
   const [data, updateData] = useState({ name: "" });
+
+  const auth = getAuth();
+  const user = auth.currentUser;
+
   const [profiledata, setProfileData] = useState({
     name: "",
     number: "",
-    email: "",
+    email: user.providerData[0].email,
     currentScore: 0,
   });
 
   const db = getDatabase();
   const profileRef = ref(db, "profiles/" + props.userId);
-  const auth = getAuth();
-  const user = auth.currentUser;
 
   const handleNameEdit = (name) => {
     if (nameEdit) {
@@ -68,15 +70,15 @@ const Profile = (props) => {
     }
   };
 
-  useEffect(() => {
-    onValue(profileRef, (snapshot) => {
-      if (snapshot.val() !== null) {
-        setProfileData(snapshot.val());
-      } else {
-        setProfileData({ email: "", name: "", number: "", currentScore: 0 });
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   onValue(profileRef, (snapshot) => {
+  //     if (snapshot.val() !== null) {
+  //       setProfileData(snapshot.val());
+  //     } else {
+  //       setProfileData({ email: "", name: "", number: "", currentScore: 0 });
+  //     }
+  //   });
+  // }, []);
 
   useEffect(() => {
     if (props.userId === "") {
@@ -87,22 +89,18 @@ const Profile = (props) => {
   }, [props.userId]);
 
   const onSubmitEmail = () => {
-    if (profiledata.email === null) {
-      set(profileRef, profiledata.email).catch((err) => console.log(err));
-    } else {
-      const credential = EmailAuthProvider.credential(
-        user.providerData[0].email,
-        currentPassword
-      );
+    const credential = EmailAuthProvider.credential(
+      user.providerData[0].email,
+      currentPassword
+    );
 
-      reauthenticateWithCredential(user, credential)
-        .then(() => {
-          updateEmail(user, profiledata.email).then(() =>
-            console.log("success number 2")
-          );
-        })
-        .catch((err) => console.log("Nooooooooooo", err));
-    }
+    reauthenticateWithCredential(user, credential)
+      .then(() => {
+        updateEmail(user, profiledata.email).then(() =>
+          console.log("success number 2")
+        );
+      })
+      .catch((err) => console.log("Nooooooooooo", err));
   };
 
   const onSubmit = () => {

@@ -87,18 +87,22 @@ const Profile = (props) => {
   }, [props.userId]);
 
   const onSubmitEmail = () => {
-    const credential = EmailAuthProvider.credential(
-      user.providerData[0].email,
-      currentPassword
-    );
+    if (profiledata.email === null) {
+      set(profileRef, profiledata.email).catch((err) => console.log(err));
+    } else {
+      const credential = EmailAuthProvider.credential(
+        user.providerData[0].email,
+        currentPassword
+      );
 
-    reauthenticateWithCredential(user, credential)
-      .then(() => {
-        updateEmail(user, profiledata.email).then(() =>
-          console.log("success number 2")
-        );
-      })
-      .catch((err) => console.log("Nooooooooooo", err));
+      reauthenticateWithCredential(user, credential)
+        .then(() => {
+          updateEmail(user, profiledata.email).then(() =>
+            console.log("success number 2")
+          );
+        })
+        .catch((err) => console.log("Nooooooooooo", err));
+    }
   };
 
   const onSubmit = () => {

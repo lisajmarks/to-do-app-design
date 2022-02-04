@@ -7,6 +7,7 @@ import {
   reauthenticateWithCredential,
   EmailAuthProvider,
   updateEmail,
+  updateProfile,
 } from "firebase/auth";
 import styles from "./styles";
 
@@ -14,9 +15,7 @@ const Profile = (props) => {
   const [nameEdit, setNameEdit] = useState(false);
   const [numberEdit, setNumberEdit] = useState(false);
   const [emailEdit, setEmailEdit] = useState(false);
-
-  const [number, setNumber] = useState("");
-
+  const [phoneNumber, setPhoneNumber] = useState(0);
   const [newPassword, setNewPassword] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
 
@@ -46,6 +45,11 @@ const Profile = (props) => {
 
   useEffect(() => {
     console.log("profiledata object", profiledata);
+
+    onValue(profileRef, (snapshot) => {
+      const data = snapshot.val();
+      setProfileData({ ...profiledata, number: data.number });
+    });
   }, []);
 
   useEffect(() => {
@@ -71,19 +75,23 @@ const Profile = (props) => {
       .catch((err) => console.log("Nooooooooooo", err));
   };
 
+  const saveNumberToFirebase = () => {
+    set(profileRef, {
+      number: profiledata.number,
+      score: profiledata.currentScore,
+    }).catch((err) => console.log(err));
+  };
+
   const onSubmit = () => {
-    // set(profileRef, profiledata).catch((err) => console.log(err));
-    updateProfile(auth.currentUser, {
-      displayName: "Jane Q. User",
-      photoURL: "https://example.com/jane-q-user/profile.jpg",
+    updateProfile(user, {
+      displayName: profiledata.name,
     })
       .then(() => {
-        // Profile updated!
-        // ...
+        console.log("successfully saved");
+        console.log(user.providerData[0]);
       })
       .catch((error) => {
-        // An error occurred
-        // ...
+        console.log("error ==>", error);
       });
   };
 
@@ -136,13 +144,13 @@ const Profile = (props) => {
         <TextInput
           placeholder="Phone Number"
           style={styles.input}
-          onChangeText={(str) => onChangeText(str, "Number")}
-          value={number}
-          onBlur={() => onSubmit()}
+          onChangeText={(str) => onChangeText(str, "number")}
+          value={profiledata.number === null ? "" : profiledata.number}
+          onBlur={() => saveNumberToFirebase()}
           keyboardType="numeric"
         />
       ) : (
-        <Pressable onPress={() => handleNumberEdit()}>
+        <Pressable onPress={() => setNumberEdit(!numberEdit)}>
           <Text>{profiledata.number ? profiledata.number : "Phone"}</Text>
         </Pressable>
       )}

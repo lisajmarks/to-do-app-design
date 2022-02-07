@@ -10,6 +10,8 @@ import {
   updateProfile,
 } from "firebase/auth";
 import styles from "./styles";
+import EmailModal from "../../constants/EmailModal";
+import PassModal from "../../constants/PassModal";
 
 const Profile = (props) => {
   const [nameEdit, setNameEdit] = useState(false);
@@ -44,11 +46,12 @@ const Profile = (props) => {
   };
 
   useEffect(() => {
-    console.log("profiledata object", profiledata);
-
     onValue(profileRef, (snapshot) => {
       const data = snapshot.val();
-      setProfileData({ ...profiledata, number: data.number });
+      setProfileData({
+        ...profiledata,
+        number: data !== null ? data.number : "",
+      });
     });
   }, []);
 
@@ -59,21 +62,6 @@ const Profile = (props) => {
       console.log("profiles/" + props.userId);
     }
   }, [props.userId]);
-
-  const onSubmitEmail = () => {
-    const credential = EmailAuthProvider.credential(
-      user.providerData[0].email,
-      currentPassword
-    );
-
-    reauthenticateWithCredential(user, credential)
-      .then(() => {
-        updateEmail(user, profiledata.email).then(() =>
-          console.log("success number 2")
-        );
-      })
-      .catch((err) => console.log("Nooooooooooo", err));
-  };
 
   const saveNumberToFirebase = () => {
     set(profileRef, {
@@ -99,52 +87,24 @@ const Profile = (props) => {
     setProfileData({ ...profiledata, [field]: text });
   };
 
-  const verifyThenUpdate = (text) => {
-    if (text === newPassword) {
-      // TODO: Set up password field to take current password before updating
-      const credential = EmailAuthProvider.credential(
-        user.providerData[0].email,
-        currentPassword
-      );
-
-      reauthenticateWithCredential(user, credential)
-        .then(() => {
-          updatePassword(user, newPassword)
-            .then(() => {
-              console.log("success");
-            })
-            .catch((error) => {
-              console.log("nope ===>", error);
-            });
-        })
-        .catch((err) => console.log(err));
-    } else {
-      console.log("some error occurred");
-    }
-  };
-
   const [emailModal, setEmailModal] = useState(false);
+  const [passwordModal, setPasswordModal] = useState(false);
 
   return (
     <View style={styles.container}>
-      <Modal
-        animationType="slide"
-        transparent={false}
-        visible={emailModal}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setEmailModal(!emailModal);
-        }}
-      >
-        <View>
-          <View>
-            <Text>Hello World!</Text>
-            <Pressable onPress={() => console.log("yoo")}>
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </Pressable>
-          </View>
-        </View>
-      </Modal>
+      <EmailModal
+        setEmailModal={setEmailModal}
+        emailModal={emailModal}
+        profiledata={profiledata}
+        setProfileData={setProfileData}
+      />
+
+      <PassModal
+        setPasswordModal={setPasswordModal}
+        passwordModal={passwordModal}
+        profiledata={profiledata}
+        setProfileData={setProfileData}
+      />
 
       <Text>MY INFORMATION</Text>
       {nameEdit ? (
@@ -176,37 +136,13 @@ const Profile = (props) => {
         </Pressable>
       )}
 
-      {emailEdit ? (
-        <TextInput
-          placeholder="Email"
-          style={styles.input}
-          onChangeText={(str) => onChangeText(str, "email")}
-          value={profiledata.email}
-          onBlur={() => onSubmitEmail()}
-        />
-      ) : (
-        <Pressable onPress={() => setEmailEdit(!emailEdit)}>
-          <Text>
-            {profiledata.email ? profiledata.email : "No email saved"}
-          </Text>
-        </Pressable>
-      )}
+      <Pressable onPress={() => setEmailModal(!emailModal)}>
+        <Text>{profiledata.email ? profiledata.email : "No email saved"}</Text>
+      </Pressable>
 
-      <Text>CHANGE PASSWORD</Text>
-      <TextInput
-        placeholder="Current Password"
-        onChangeText={(text) => setCurrentPassword(text)}
-      />
-      <TextInput
-        placeholder="New Password"
-        onChangeText={(text) => setNewPassword(text)}
-      />
-      <TextInput
-        placeholder="Confirm Password"
-        onBlur={(obj) =>
-          newPassword.length > 0 && verifyThenUpdate(obj.target.value)
-        }
-      />
+      <Pressable onPress={() => setPasswordModal(!passwordModal)}>
+        <Text>CHANGE PASSWORD</Text>
+      </Pressable>
     </View>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, TextInput, Pressable, Alert } from "react-native";
+import { Text, View, TextInput, Pressable, Alert, Modal } from "react-native";
 import { getDatabase, ref, onValue, set } from "firebase/database";
 import {
   getAuth,
@@ -123,8 +123,29 @@ const Profile = (props) => {
     }
   };
 
+  const [emailModal, setEmailModal] = useState(false);
+
   return (
     <View style={styles.container}>
+      <Modal
+        animationType="slide"
+        transparent={false}
+        visible={emailModal}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setEmailModal(!emailModal);
+        }}
+      >
+        <View>
+          <View>
+            <Text>Hello World!</Text>
+            <Pressable onPress={() => console.log("yoo")}>
+              <Text style={styles.textStyle}>Hide Modal</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
+
       <Text>MY INFORMATION</Text>
       {nameEdit ? (
         <TextInput

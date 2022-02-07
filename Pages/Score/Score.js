@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, FlatList } from "react-native";
 import { getDatabase, ref, onValue, set } from "firebase/database";
+import { getAuth } from "firebase/auth";
 
 const Score = (props) => {
   const [totalPoints, setTotalPoints] = useState(0);
   const [allProfiles, setAllProfiles] = useState([]);
   const [highScore, setHighScore] = useState(0);
+
+  const auth = getAuth();
+  const user = auth.currentUser;
 
   const db = getDatabase();
   //get database to db
@@ -45,6 +49,7 @@ const Score = (props) => {
       <Text>Your Score: {totalPoints}</Text>
       <Text>High Score: {highScore}</Text>
       <View style={{ flex: 1, marginTop: 10 }}>
+        <Text>{user.providerData[0].displayName}</Text>
         <FlatList
           data={allProfiles}
           renderItem={({ item, index }) => (

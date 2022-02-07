@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, TextInput, Pressable, Alert } from "react-native";
+import { Text, View, TextInput, Pressable, Alert, Modal } from "react-native";
 import { getDatabase, ref, onValue, set } from "firebase/database";
 import {
   getAuth,
@@ -7,47 +7,36 @@ import {
   reauthenticateWithCredential,
   EmailAuthProvider,
   updateEmail,
+  updateProfile,
 } from "firebase/auth";
 import styles from "./styles";
+import EmailModal from "../../constants/EmailModal";
+import PassModal from "../../constants/PassModal";
 
 const Profile = (props) => {
   const [nameEdit, setNameEdit] = useState(false);
   const [numberEdit, setNumberEdit] = useState(false);
   const [emailEdit, setEmailEdit] = useState(false);
-  const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
-  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState(0);
   const [newPassword, setNewPassword] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
-  const [data, updateData] = useState({ name: "" });
+
+  const auth = getAuth();
+  const user = auth.currentUser;
+
   const [profiledata, setProfileData] = useState({
-    name: "",
-    number: "",
-    email: "",
+    name: user.providerData[0].displayName,
+    number: user.providerData[0].phoneNumber,
+    email: user.providerData[0].email,
     currentScore: 0,
   });
 
   const db = getDatabase();
   const profileRef = ref(db, "profiles/" + props.userId);
-  const auth = getAuth();
-  const user = auth.currentUser;
-
-  const handleNameEdit = (name) => {
-    if (nameEdit) {
-      if (name !== "") {
-        updateData(name);
-        setNameEdit(!nameEdit);
-      }
-    } else {
-      setName(name);
-      setNameEdit(!nameEdit);
-    }
-  };
 
   const handleNumberEdit = (number) => {
     if (numberEdit) {
       if (number !== "") {
-        updateData(number);
         setNumberEdit(!numberEdit);
       }
     } else {
@@ -56,25 +45,13 @@ const Profile = (props) => {
     }
   };
 
-  const handleEmailEdit = (email) => {
-    if (emailEdit) {
-      if (email !== "") {
-        updateData(email);
-        setEmailEdit(!emailEdit);
-      }
-    } else {
-      setEmail(email);
-      setEmailEdit(!emailEdit);
-    }
-  };
-
   useEffect(() => {
     onValue(profileRef, (snapshot) => {
-      if (snapshot.val() !== null) {
-        setProfileData(snapshot.val());
-      } else {
-        setProfileData({ email: "", name: "", number: "", currentScore: 0 });
-      }
+      const data = snapshot.val();
+      setProfileData({
+        ...profiledata,
+        number: data !== null ? data.number : "",
+      });
     });
   }, []);
 
@@ -86,55 +63,49 @@ const Profile = (props) => {
     }
   }, [props.userId]);
 
-  const onSubmitEmail = () => {
-    const credential = EmailAuthProvider.credential(
-      user.providerData[0].email,
-      currentPassword
-    );
-
-    reauthenticateWithCredential(user, credential)
-      .then(() => {
-        updateEmail(user, profiledata.email).then(() =>
-          console.log("success number 2")
-        );
-      })
-      .catch((err) => console.log("Nooooooooooo", err));
+  const saveNumberToFirebase = () => {
+    set(profileRef, {
+      number: profiledata.number,
+      score: profiledata.currentScore,
+    }).catch((err) => console.log(err));
   };
 
   const onSubmit = () => {
-    set(profileRef, profiledata).catch((err) => console.log(err));
+    updateProfile(user, {
+      displayName: profiledata.name,
+    })
+      .then(() => {
+        console.log("successfully saved");
+        console.log(user.providerData[0]);
+      })
+      .catch((error) => {
+        console.log("error ==>", error);
+      });
   };
 
   const onChangeText = (text, field) => {
     setProfileData({ ...profiledata, [field]: text });
   };
 
-  const verifyThenUpdate = (text) => {
-    if (text === newPassword) {
-      // TODO: Set up password field to take current password before updating
-      const credential = EmailAuthProvider.credential(
-        user.providerData[0].email,
-        currentPassword
-      );
-
-      reauthenticateWithCredential(user, credential)
-        .then(() => {
-          updatePassword(user, newPassword)
-            .then(() => {
-              console.log("success");
-            })
-            .catch((error) => {
-              console.log("nope ===>", error);
-            });
-        })
-        .catch((err) => console.log(err));
-    } else {
-      console.log("some error occurred");
-    }
-  };
+  const [emailModal, setEmailModal] = useState(false);
+  const [passwordModal, setPasswordModal] = useState(false);
 
   return (
     <View style={styles.container}>
+      <EmailModal
+        setEmailModal={setEmailModal}
+        emailModal={emailModal}
+        profiledata={profiledata}
+        setProfileData={setProfileData}
+      />
+
+      <PassModal
+        setPasswordModal={setPasswordModal}
+        passwordModal={passwordModal}
+        profiledata={profiledata}
+        setProfileData={setProfileData}
+      />
+
       <Text>MY INFORMATION</Text>
       {nameEdit ? (
         <TextInput
@@ -142,10 +113,10 @@ const Profile = (props) => {
           style={styles.input}
           onChangeText={(str) => onChangeText(str, "name")}
           onBlur={() => onSubmit()}
-          value={name}
+          value={profiledata.name === null ? "" : profiledata.name}
         />
       ) : (
-        <Pressable onPress={() => handleNameEdit()}>
+        <Pressable onPress={() => setNameEdit(!nameEdit)}>
           <Text>{profiledata.name ? profiledata.name : "Name"}</Text>
         </Pressable>
       )}
@@ -154,48 +125,24 @@ const Profile = (props) => {
         <TextInput
           placeholder="Phone Number"
           style={styles.input}
-          onChangeText={(str) => onChangeText(str, "Number")}
-          value={number}
-          onBlur={() => onSubmit()}
+          onChangeText={(str) => onChangeText(str, "number")}
+          value={profiledata.number === null ? "" : profiledata.number}
+          onBlur={() => saveNumberToFirebase()}
           keyboardType="numeric"
         />
       ) : (
-        <Pressable onPress={() => handleNumberEdit()}>
+        <Pressable onPress={() => setNumberEdit(!numberEdit)}>
           <Text>{profiledata.number ? profiledata.number : "Phone"}</Text>
         </Pressable>
       )}
 
-      {emailEdit ? (
-        <TextInput
-          placeholder="Email"
-          style={styles.input}
-          onChangeText={(str) => onChangeText(str, "email")}
-          value={email}
-          onBlur={() => onSubmitEmail()}
-        />
-      ) : (
-        <Pressable onPress={() => handleEmailEdit()}>
-          <Text>
-            {profiledata.email ? profiledata.email : "No email saved"}
-          </Text>
-        </Pressable>
-      )}
+      <Pressable onPress={() => setEmailModal(!emailModal)}>
+        <Text>{profiledata.email ? profiledata.email : "No email saved"}</Text>
+      </Pressable>
 
-      <Text>CHANGE PASSWORD</Text>
-      <TextInput
-        placeholder="Current Password"
-        onChangeText={(text) => setCurrentPassword(text)}
-      />
-      <TextInput
-        placeholder="New Password"
-        onChangeText={(text) => setNewPassword(text)}
-      />
-      <TextInput
-        placeholder="Confirm Password"
-        onBlur={(obj) =>
-          newPassword.length > 0 && verifyThenUpdate(obj.target.value)
-        }
-      />
+      <Pressable onPress={() => setPasswordModal(!passwordModal)}>
+        <Text>CHANGE PASSWORD</Text>
+      </Pressable>
     </View>
   );
 };

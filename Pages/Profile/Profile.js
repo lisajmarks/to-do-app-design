@@ -66,7 +66,8 @@ const Profile = (props) => {
   const saveNumberToFirebase = () => {
     set(profileRef, {
       number: profiledata.number,
-      score: profiledata.currentScore,
+      currentScore: profiledata.currentScore,
+      name: user.providerData[0].displayName,
     }).catch((err) => console.log(err));
   };
 

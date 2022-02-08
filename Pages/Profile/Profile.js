@@ -1,14 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Text, View, TextInput, Pressable, Alert, Modal } from "react-native";
-import { getDatabase, ref, onValue, set } from "firebase/database";
-import {
-  getAuth,
-  updatePassword,
-  reauthenticateWithCredential,
-  EmailAuthProvider,
-  updateEmail,
-  updateProfile,
-} from "firebase/auth";
+import { getDatabase, ref, onValue, set, update } from "firebase/database";
+import { getAuth, updateProfile } from "firebase/auth";
 import styles from "./styles";
 import EmailModal from "../../constants/EmailModal";
 import PassModal from "../../constants/PassModal";
@@ -16,10 +9,6 @@ import PassModal from "../../constants/PassModal";
 const Profile = (props) => {
   const [nameEdit, setNameEdit] = useState(false);
   const [numberEdit, setNumberEdit] = useState(false);
-  const [emailEdit, setEmailEdit] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState(0);
-  const [newPassword, setNewPassword] = useState("");
-  const [currentPassword, setCurrentPassword] = useState("");
 
   const auth = getAuth();
   const user = auth.currentUser;
@@ -62,13 +51,19 @@ const Profile = (props) => {
       console.log("profiles/" + props.userId);
     }
   }, [props.userId]);
-
+  console.log("what is this===>", profiledata.number);
   const saveNumberToFirebase = () => {
-    set(profileRef, {
-      number: profiledata.number,
-      currentScore: profiledata.currentScore,
-      name: user.providerData[0].displayName,
-    }).catch((err) => console.log(err));
+    if (profiledata.number === null) {
+      set(profileRef, {
+        number: profiledata.number,
+        currentScore: profiledata.currentScore,
+        name: user.providerData[0].displayName,
+      }).catch((err) => console.log(err));
+    } else {
+      update(profileRef, {
+        number: profiledata.number,
+      });
+    }
   };
 
   const onSubmit = () => {

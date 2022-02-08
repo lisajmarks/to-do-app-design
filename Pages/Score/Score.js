@@ -10,6 +10,10 @@ const Score = (props) => {
 
   const auth = getAuth();
   const user = auth.currentUser;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 17718a175f74821e4037eff28056cc460e9b57ef
   const db = getDatabase();
   //get database to db
   const reference = ref(db, "profiles/" + props.userId);
@@ -50,7 +54,11 @@ const Score = (props) => {
       <Text>Your Score: {totalPoints}</Text>
       <Text>High Score: {highScore}</Text>
       <View style={{ flex: 1, marginTop: 10 }}>
+<<<<<<< HEAD
         <Text>Current User's Name: {user.providerData[0].displayName}</Text>
+=======
+        <Text>{user.providerData[0].displayName}</Text>
+>>>>>>> 17718a175f74821e4037eff28056cc460e9b57ef
         <FlatList
           data={allProfiles}
           renderItem={({ item, index }) => (

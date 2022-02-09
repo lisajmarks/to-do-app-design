@@ -10,7 +10,6 @@ const Score = (props) => {
 
   const auth = getAuth();
   const user = auth.currentUser;
-
   const db = getDatabase();
   //get database to db
   const reference = ref(db, "profiles/" + props.userId);
@@ -25,6 +24,8 @@ const Score = (props) => {
       }
     });
   }, []);
+
+  console.log("Loook here ====>", user.providerData[0]);
   //when we get value go to your reference pathway and take a snapshot
   //if snapshot value has something there, assign value to totalpoints
   //setTotalPoints to totalpoints
@@ -45,11 +46,10 @@ const Score = (props) => {
 
   return (
     <View>
-      <Text>Hello! Score Page</Text>
+      <Text>Hello, {user.providerData[0].displayName}! Score Page</Text>
       <Text>Your Score: {totalPoints}</Text>
       <Text>High Score: {highScore}</Text>
       <View style={{ flex: 1, marginTop: 10 }}>
-        <Text>{user.providerData[0].displayName}</Text>
         <FlatList
           data={allProfiles}
           renderItem={({ item, index }) => (

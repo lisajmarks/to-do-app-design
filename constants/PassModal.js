@@ -18,7 +18,7 @@ import {
   updatePassword,
 } from "firebase/auth";
 
-const EmailModal = ({
+const PassModal = ({
   setPasswordModal,
   passwordModal,
   profiledata,
@@ -62,11 +62,11 @@ const EmailModal = ({
         <View>
           <Text>Hello World!</Text>
           <TextInput
-            placeholder="New Password"
+            placeholder="Old Password"
             onChangeText={(input) => setForm({ ...form, oldPassword: input })}
           />
           <TextInput
-            placeholder="Old Password"
+            placeholder="New Password"
             onChangeText={(input) => setForm({ ...form, newPassword: input })}
           />
 
@@ -81,6 +81,6 @@ const EmailModal = ({
   );
 };
 
-export default EmailModal;
+export default PassModal;
 
 const styles = StyleSheet.create({});

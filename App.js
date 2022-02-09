@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import "./firebase";
 
@@ -12,6 +13,7 @@ import Home from "./Pages/Home/Home";
 import Score from "./Pages/Score/Score";
 
 const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   const userAuth = getAuth();
@@ -26,36 +28,41 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Auth">
+      <Drawer.Navigator
+        screenOptions={{
+          drawerPosition: "right",
+          //headerShown: false,
+        }}
+      >
+        <Drawer.Screen name="Auth">
           {(props) => (
             <Auth userId={userId} userAuth={userAuth} {...props}>
               Auth
             </Auth>
           )}
-        </Stack.Screen>
-        <Stack.Screen name="Home" options={{ headerLeft: (props) => null }}>
+        </Drawer.Screen>
+        <Drawer.Screen name="Home" options={{ headerLeft: (props) => null }}>
           {(props) => (
             <Home userId={userId} userAuth={userAuth} {...props}>
               Home
             </Home>
           )}
-        </Stack.Screen>
-        <Stack.Screen name="Profile">
+        </Drawer.Screen>
+        <Drawer.Screen name="Profile">
           {(props) => (
             <Profile userId={userId} userAuth={userAuth} {...props}>
               Profile
             </Profile>
           )}
-        </Stack.Screen>
-        <Stack.Screen name="Score">
+        </Drawer.Screen>
+        <Drawer.Screen name="Score">
           {(props) => (
             <Score userId={userId} userAuth={userAuth} {...props}>
               Score
             </Score>
           )}
-        </Stack.Screen>
-      </Stack.Navigator>
+        </Drawer.Screen>
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }

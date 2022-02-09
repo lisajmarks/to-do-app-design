@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import "./firebase";
 
@@ -10,6 +11,7 @@ import Profile from "./Pages/Profile/Profile";
 import Auth from "./Pages/Auth/Auth";
 import Home from "./Pages/Home/Home";
 import Score from "./Pages/Score/Score";
+import drawer from "./constants/drawer";
 
 const Stack = createNativeStackNavigator();
 
@@ -54,6 +56,9 @@ export default function App() {
               Score
             </Score>
           )}
+        </Stack.Screen>
+        <Stack.Screen name="Drawer">
+          {(props) => <drawer>Drawer</drawer>}
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>

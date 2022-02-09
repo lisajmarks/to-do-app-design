@@ -123,6 +123,10 @@ const Home = (props) => {
           <Text>Sign Out</Text>
         </TouchableOpacity>
       </View>
+
+      <TouchableOpacity onPress={() => props.navigation.navigate("Drawer")}>
+        <Text>Drawer</Text>
+      </TouchableOpacity>
     </View>
   );
 };

@@ -8,6 +8,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import styles from "./styles";
 
 const Login = (props) => {
   const [isCreateMode, setCreateMode] = useState(false);
@@ -143,14 +144,4 @@ const Login = (props) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    justifyContent: "space-between",
-    alignItems: "stretch",
-  },
-  label: { fontSize: 16, fontWeight: "bold", color: Colors.black },
-  header: { fontSize: 72, color: Colors.red, alignSelf: "center" },
-});
 export default Login;

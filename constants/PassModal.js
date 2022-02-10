@@ -60,7 +60,7 @@ const PassModal = ({
     >
       <View>
         <View>
-          <Text>Hello World!</Text>
+          <Text>Changing Password</Text>
           <TextInput
             placeholder="Old Password"
             onChangeText={(input) => setForm({ ...form, oldPassword: input })}

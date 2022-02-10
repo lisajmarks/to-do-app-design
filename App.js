@@ -31,6 +31,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Drawer.Navigator
+        drawerContent={(props) => <CustomDrawer {...props} />}
         screenOptions={{
           drawerPosition: "right",
         }}

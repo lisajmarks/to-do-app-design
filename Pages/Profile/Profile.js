@@ -5,24 +5,19 @@ import { getAuth, updateProfile } from "firebase/auth";
 import styles from "./styles";
 import EmailModal from "../../constants/EmailModal";
 import PassModal from "../../constants/PassModal";
-
 const Profile = (props) => {
   const [nameEdit, setNameEdit] = useState(false);
   const [numberEdit, setNumberEdit] = useState(false);
-
   const auth = getAuth();
   const user = auth.currentUser;
-
   const [profiledata, setProfileData] = useState({
     name: user.providerData[0].displayName,
     number: user.providerData[0].phoneNumber,
     email: user.providerData[0].email,
     currentScore: 0,
   });
-
   const db = getDatabase();
   const profileRef = ref(db, "profiles/" + props.userId);
-
   const handleNumberEdit = (number) => {
     if (numberEdit) {
       if (number !== "") {
@@ -33,7 +28,6 @@ const Profile = (props) => {
       setNumberEdit(!numberEdit);
     }
   };
-
   useEffect(() => {
     onValue(profileRef, (snapshot) => {
       const data = snapshot.val();
@@ -43,7 +37,6 @@ const Profile = (props) => {
       });
     });
   }, []);
-
   useEffect(() => {
     if (props.userId === "") {
       props.navigation.navigate("Auth");
@@ -65,7 +58,6 @@ const Profile = (props) => {
       });
     }
   };
-
   const onSubmit = () => {
     updateProfile(user, {
       displayName: profiledata.name,
@@ -78,14 +70,11 @@ const Profile = (props) => {
         console.log("error ==>", error);
       });
   };
-
   const onChangeText = (text, field) => {
     setProfileData({ ...profiledata, [field]: text });
   };
-
   const [emailModal, setEmailModal] = useState(false);
   const [passwordModal, setPasswordModal] = useState(false);
-
   return (
     <View style={styles.container}>
       <EmailModal
@@ -94,14 +83,12 @@ const Profile = (props) => {
         profiledata={profiledata}
         setProfileData={setProfileData}
       />
-
       <PassModal
         setPasswordModal={setPasswordModal}
         passwordModal={passwordModal}
         profiledata={profiledata}
         setProfileData={setProfileData}
       />
-
       <Text>MY INFORMATION</Text>
       {nameEdit ? (
         <TextInput
@@ -116,7 +103,6 @@ const Profile = (props) => {
           <Text>{profiledata.name ? profiledata.name : "Name"}</Text>
         </Pressable>
       )}
-
       {numberEdit ? (
         <TextInput
           placeholder="Phone Number"
@@ -131,16 +117,13 @@ const Profile = (props) => {
           <Text>{profiledata.number ? profiledata.number : "Phone"}</Text>
         </Pressable>
       )}
-
       <Pressable onPress={() => setEmailModal(!emailModal)}>
         <Text>{profiledata.email ? profiledata.email : "No email saved"}</Text>
       </Pressable>
-
       <Pressable onPress={() => setPasswordModal(!passwordModal)}>
         <Text>CHANGE PASSWORD</Text>
       </Pressable>
     </View>
   );
 };
-
 export default Profile;

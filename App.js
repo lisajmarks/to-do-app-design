@@ -14,7 +14,6 @@ import Auth from "./Pages/Auth/Auth";
 import Home from "./Pages/Home/Home";
 import Score from "./Pages/Score/Score";
 
-const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
 export default function App() {
@@ -31,7 +30,9 @@ export default function App() {
   return (
     <NavigationContainer>
       <Drawer.Navigator
-        drawerContent={(props) => <CustomDrawer {...props} />}
+        drawerContent={(props) => (
+          <CustomDrawer userId={userId} userAuth={userAuth} {...props} />
+        )}
         screenOptions={{
           drawerPosition: "right",
           //headerShown: false,

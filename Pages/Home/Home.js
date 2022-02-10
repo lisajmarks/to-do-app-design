@@ -21,12 +21,30 @@ const Home = (props) => {
   const [completedToDos, setCompletedToDos] = useState([]);
   const [completeToDo, setCompleteToDo] = useState(false);
   const [point, setPoint] = useState(false);
+  const [currentDate, setCurrentDate] = useState("");
 
   const db = getDatabase();
   const toDoListRef = ref(db, "toDoList/" + props.userId);
   //go to this userId
   const newToDoRef = push(toDoListRef);
   //add new to do to end of toDoListRef
+
+  useEffect(() => {
+    const day = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    const today = new Date().getDay();
+    const date = new Date().getDate();
+    const month = new Date().getMonth() + 1;
+    const year = new Date().getFullYear(); //Current Year
+    setCurrentDate(day[today] + ", " + month + "/" + date + "/" + year);
+  }, []);
 
   const onAdd = () => {
     if (newToDo !== "") {
@@ -82,6 +100,7 @@ const Home = (props) => {
         <Ionicons name="person-circle-outline" size={24} color="black" />
       </TouchableOpacity>
       <Text>Things To Do!</Text>
+      <Text>Current date: {currentDate}</Text>
       <View>
         <TouchableOpacity onPress={() => onAdd()}>
           <AntDesign name="plus" size={15} color="#000" />
@@ -123,10 +142,6 @@ const Home = (props) => {
           <Text>Sign Out</Text>
         </TouchableOpacity>
       </View>
-
-      <TouchableOpacity onPress={() => props.navigation.navigate("Drawer")}>
-        <Text>Drawer</Text>
-      </TouchableOpacity>
     </View>
   );
 };

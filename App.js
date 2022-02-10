@@ -14,9 +14,8 @@ import Auth from "./Pages/Auth/Auth";
 import Home from "./Pages/Home/Home";
 import Score from "./Pages/Score/Score";
 
-const Drawer = createDrawerNavigator();
-
 const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   const userAuth = getAuth();
@@ -32,19 +31,10 @@ export default function App() {
   return (
     <NavigationContainer>
       <Drawer.Navigator
-        drawerPosition="right"
-        drawerContent={(props) => <CustomDrawer {...props} />}
-        // screenOptions={{
-        //   headerShown: true,
-        //   drawerActiveBackgroundColor: "#aa18ea",
-        //   drawerActiveTintColor: "#fff",
-        //   drawerInactiveTintColor: "#333",
-        //   drawerLabelStyle: {
-        //     marginLeft: -25,
-        //     fontFamily: "Roboto-Medium",
-        //     fontSize: 15,
-        //   },
-        // }}
+        screenOptions={{
+          drawerPosition: "right",
+          //headerShown: false,
+        }}
       >
         <Drawer.Screen name="Auth">
           {(props) => (

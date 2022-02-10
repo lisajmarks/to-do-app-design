@@ -11,7 +11,7 @@ import Profile from "./Pages/Profile/Profile";
 import Auth from "./Pages/Auth/Auth";
 import Home from "./Pages/Home/Home";
 import Score from "./Pages/Score/Score";
-
+import { Ionicons } from "@expo/vector-icons";
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -31,7 +31,6 @@ export default function App() {
       <Drawer.Navigator
         screenOptions={{
           drawerPosition: "right",
-          //headerShown: false,
         }}
       >
         <Drawer.Screen name="Auth">

@@ -6,6 +6,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import "./firebase";
+import "react-native-gesture-handler";
+import CustomDrawer from "./constants/CustomDrawer";
 
 import Profile from "./Pages/Profile/Profile";
 import Auth from "./Pages/Auth/Auth";

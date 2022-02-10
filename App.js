@@ -6,12 +6,15 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import "./firebase";
+import "react-native-gesture-handler";
+import CustomDrawer from "./constants/CustomDrawer";
 
 import Profile from "./Pages/Profile/Profile";
 import Auth from "./Pages/Auth/Auth";
 import Home from "./Pages/Home/Home";
 import Score from "./Pages/Score/Score";
-import drawer from "./constants/drawer";
+
+const Drawer = createDrawerNavigator();
 
 const Stack = createNativeStackNavigator();
 
@@ -28,39 +31,50 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Auth">
+      <Drawer.Navigator
+        drawerPosition="right"
+        drawerContent={(props) => <CustomDrawer {...props} />}
+        // screenOptions={{
+        //   headerShown: true,
+        //   drawerActiveBackgroundColor: "#aa18ea",
+        //   drawerActiveTintColor: "#fff",
+        //   drawerInactiveTintColor: "#333",
+        //   drawerLabelStyle: {
+        //     marginLeft: -25,
+        //     fontFamily: "Roboto-Medium",
+        //     fontSize: 15,
+        //   },
+        // }}
+      >
+        <Drawer.Screen name="Auth">
           {(props) => (
             <Auth userId={userId} userAuth={userAuth} {...props}>
               Auth
             </Auth>
           )}
-        </Stack.Screen>
-        <Stack.Screen name="Home" options={{ headerLeft: (props) => null }}>
+        </Drawer.Screen>
+        <Drawer.Screen name="Home" options={{ headerLeft: (props) => null }}>
           {(props) => (
             <Home userId={userId} userAuth={userAuth} {...props}>
               Home
             </Home>
           )}
-        </Stack.Screen>
-        <Stack.Screen name="Profile">
+        </Drawer.Screen>
+        <Drawer.Screen name="Profile">
           {(props) => (
             <Profile userId={userId} userAuth={userAuth} {...props}>
               Profile
             </Profile>
           )}
-        </Stack.Screen>
-        <Stack.Screen name="Score">
+        </Drawer.Screen>
+        <Drawer.Screen name="Score">
           {(props) => (
             <Score userId={userId} userAuth={userAuth} {...props}>
               Score
             </Score>
           )}
-        </Stack.Screen>
-        <Stack.Screen name="Drawer">
-          {(props) => <drawer>Drawer</drawer>}
-        </Stack.Screen>
-      </Stack.Navigator>
+        </Drawer.Screen>
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }

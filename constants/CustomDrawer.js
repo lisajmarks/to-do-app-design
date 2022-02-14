@@ -14,11 +14,21 @@ import {
 
 import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import { getDatabase, ref, onValue, set } from "firebase/database";
+
+import { getAuth } from "firebase/auth";
+
+// const auth = getAuth();
+// const user = auth.currentUser;
+// const db = getDatabase();
+//get database to db
+// const reference = ref(db, "profiles/" + props.userId);
+//setting word reference to mean "go to this pathway (db > profiles > userId)"
+// const allProfilesRef = ref(db, "profiles/");
 
 const CustomDrawer = (props) => {
   const signout = () => {
     props.userAuth.signOut();
-    props.navigation.closeDrawer();
     props.navigation.navigate("Auth");
   };
   return (
@@ -33,6 +43,8 @@ const CustomDrawer = (props) => {
               fontStyle: "normal",
               fontWeight: "normal",
               lineHeight: 46,
+              justifyContent: "center",
+              alignSelf: "center",
               letterSpacing: -0.08,
               //   border:2.91781 solid #FFF7F3,
             }}
@@ -41,14 +53,17 @@ const CustomDrawer = (props) => {
           </Text>
           <Text
             style={{
-              color: "#fff",
+              color: "#000",
               fontSize: 18,
               fontFamily: "Roboto-Medium",
               marginTop: 10,
               marginBottom: 5,
+              justifyContent: "center",
+              alignSelf: "center",
             }}
           >
             Yiley Belete
+            {/* {user.providerData[0].displayName} */}
           </Text>
           <View style={{ flexDirection: "row" }}>
             <Text
@@ -68,7 +83,7 @@ const CustomDrawer = (props) => {
         </View>
       </View>
       <View style={{ padding: 20, borderTopWidth: 1, borderTopColor: "#ccc" }}>
-        <TouchableOpacity onPress={signout} style={{ paddingVertical: 15 }}>
+        <TouchableOpacity onPress={signout}>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Ionicons name="exit-outline" size={22} />
             <Text

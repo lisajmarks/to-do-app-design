@@ -13,8 +13,12 @@ import Profile from "./Pages/Profile/Profile";
 import Auth from "./Pages/Auth/Auth";
 import Home from "./Pages/Home/Home";
 import Score from "./Pages/Score/Score";
+<<<<<<< HEAD
 import { Ionicons } from "@expo/vector-icons";
 const Stack = createNativeStackNavigator();
+=======
+
+>>>>>>> f4332a931baf46cf874fffe3f4d54cd6320b91d9
 const Drawer = createDrawerNavigator();
 
 export default function App() {
@@ -32,7 +36,7 @@ export default function App() {
     <NavigationContainer>
       <Drawer.Navigator
         drawerContent={(props) => (
-          <CustomDrawer {...props} userId={userId} userAuth={userAuth} />
+          <CustomDrawer userId={userId} userAuth={userAuth} {...props} />
         )}
         screenOptions={{
           drawerPosition: "right",

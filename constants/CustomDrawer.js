@@ -16,6 +16,11 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 const CustomDrawer = (props) => {
+  const signout = () => {
+    props.userAuth.signOut();
+    props.navigation.closeDrawer();
+    props.navigation.navigate("Auth");
+  };
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View>
@@ -63,7 +68,7 @@ const CustomDrawer = (props) => {
         </View>
       </View>
       <View style={{ padding: 20, borderTopWidth: 1, borderTopColor: "#ccc" }}>
-        <TouchableOpacity onPress={() => {}} style={{ paddingVertical: 15 }}>
+        <TouchableOpacity onPress={signout} style={{ paddingVertical: 15 }}>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Ionicons name="exit-outline" size={22} />
             <Text

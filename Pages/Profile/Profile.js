@@ -10,8 +10,7 @@ const Profile = (props) => {
   const [nameEdit, setNameEdit] = useState(false);
   const [numberEdit, setNumberEdit] = useState(false);
 
-  const auth = getAuth();
-  const user = auth.currentUser;
+  const user = props.userAuth.currentUser;
 
   const [profiledata, setProfileData] = useState({
     name: user.providerData[0].displayName,

@@ -42,9 +42,7 @@ const CustomDrawer = (props) => {
               marginTop: 10,
               marginBottom: 5,
             }}
-          >
-            Yiley Belete
-          </Text>
+          ></Text>
           <View style={{ flexDirection: "row" }}>
             <Text
               style={{

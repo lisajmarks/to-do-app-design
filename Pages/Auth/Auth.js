@@ -55,7 +55,8 @@ const Login = (props) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>My Todos</Text>
+      <Text style={styles.header}>Doozit</Text>
+      {/* <Text>Create your account</Text> */}
       <View style={{ flex: 1 }}>
         <LabeledInput
           label="Email"
@@ -137,7 +138,7 @@ const Login = (props) => {
               : login(emailField.text, passwordField.text);
           }
         }}
-        buttonStyle={{ backgroundColor: Colors.red }}
+        buttonStyle={{ backgroundColor: Colors.orange }}
         text={isCreateMode ? "Create Account" : "Login"}
       />
     </View>

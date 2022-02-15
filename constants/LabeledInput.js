@@ -36,16 +36,17 @@ const styles = StyleSheet.create({
   },
   labelContainer: { flexDirection: "row", marginBottom: 4 },
   error: {
-    color: Colors.red,
+    color: Colors.lightGray,
     fontSize: 12,
     marginLeft: 4,
   },
   input: {
+    backgroundColor: Colors.lightGray,
     borderBottomColor: Colors.lightGray,
     borderBottomWidth: 1,
     paddingLeft: 4,
     height: 32,
     fontSize: 24,
-    color: Colors.black,
+    color: Colors.red,
   },
 });

@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     width: 150,
   },
   textAction: {
-    color: "white",
+    color: "black",
   },
   editInput: {
     textAlign: "right",

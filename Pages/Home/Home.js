@@ -7,12 +7,19 @@ import {
   FlatList,
   Pressable,
 } from "react-native";
-import { getDatabase, ref, onValue, set, push } from "firebase/database";
+import {
+  getDatabase,
+  ref,
+  onValue,
+  set,
+  push,
+  update,
+} from "firebase/database";
 import { AntDesign } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-// import { confirmPasswordReset } from "firebase/auth";
+import { confirmPasswordReset } from "firebase/auth";
 import TaskItem from "./TaskItem";
-// import { Swipeable } from "react-native-gesture-handler";
+import { Swipeable } from "react-native-gesture-handler";
 import styles from "./styles";
 
 const Home = (props) => {
@@ -22,10 +29,12 @@ const Home = (props) => {
   const [completeToDo, setCompleteToDo] = useState(false);
   const [point, setPoint] = useState(false);
   const [currentDate, setCurrentDate] = useState("");
+  const [allToDos, setAllToDos] = useState(0);
 
   const db = getDatabase();
   const toDoListRef = ref(db, "toDoList/" + props.userId);
   //go to this userId
+  const reference = ref(db, "profiles/" + props.userId);
   const newToDoRef = push(toDoListRef);
   //add new to do to end of toDoListRef
 
@@ -68,6 +77,7 @@ const Home = (props) => {
 
         let completedToDos = [];
         let incompleteToDos = [];
+        let allToDos = [];
 
         result.map((item) => {
           if (item.complete) {
@@ -75,15 +85,26 @@ const Home = (props) => {
           } else {
             incompleteToDos.push(item);
           }
+          allToDos.push(item.todo);
         });
         setToDos(incompleteToDos);
         setCompletedToDos(completedToDos);
+        setAllToDos(allToDos.length);
       } else {
         setToDos([]);
         setCompletedToDos([]);
+        setAllToDos(0);
       }
     });
   }, []);
+
+  useEffect(() => {
+    update(reference, {
+      doneToDos: completedToDos.length,
+      totalToDos: allToDos,
+    });
+  });
+
   //Object.keys gets the data out in a way that it can be rendered
   // if else prevents error from null
 
@@ -133,6 +154,7 @@ const Home = (props) => {
           />
         </View>
       </View>
+
       <TouchableOpacity onPress={() => props.navigation.navigate("Score")}>
         <Text>Score Page</Text>
       </TouchableOpacity>

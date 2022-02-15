@@ -15,6 +15,8 @@ const Profile = (props) => {
     number: user ? user.providerData[0].phoneNumber : "",
     email: user ? user.providerData[0].email : "",
     currentScore: 0,
+    doneToDos: 0,
+    totalToDos: 0,
   });
   const db = getDatabase();
   const profileRef = ref(db, "profiles/" + props.userId);
@@ -46,7 +48,7 @@ const Profile = (props) => {
       console.log("profiles/" + props.userId);
     }
   }, [props.userId]);
-  // console.log("what is this===>", profiledata.number);
+
   const saveNumberToFirebase = () => {
     if (profiledata.number === null) {
       set(profileRef, {
@@ -66,7 +68,6 @@ const Profile = (props) => {
     })
       .then(() => {
         console.log("successfully saved");
-        // console.log(user.providerData[0]);
       })
       .catch((error) => {
         console.log("error ==>", error);

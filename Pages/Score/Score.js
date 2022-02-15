@@ -32,22 +32,22 @@ const Score = (props) => {
       }
     });
   }, []);
-  useEffect(() => {
-    onValue(toDoListRef, (snapshot) => {
-      const data = snapshot.val();
-      let result = Object.keys(data).map((key) => data[key]);
+  // useEffect(() => {
+  //   onValue(toDoListRef, (snapshot) => {
+  //     const data = snapshot.val();
+  //     let result = Object.keys(data).map((key) => data[key]);
 
-      let completedToDos = [];
+  //     let completedToDos = [];
 
-      result.map((item) => {
-        if (item.complete) {
-          completedToDos.push(item);
-        }
-      });
-      setTotalToDos(result.length);
-      setCompletedToDos(completedToDos.length);
-    });
-  }, []);
+  //     result.map((item) => {
+  //       if (item.complete) {
+  //         completedToDos.push(item);
+  //       }
+  //     });
+  //     setTotalToDos(result.length);
+  //     setCompletedToDos(completedToDos.length);
+  //   });
+  // }, []);
 
   //when we get value go to your reference pathway and take a snapshot
   //if snapshot value has something there, assign value to totalpoints
@@ -124,7 +124,7 @@ const Score = (props) => {
               <Text style={styles.rankText}>{item.name}</Text>
               <Text style={styles.rankText}>
                 {" "}
-                {completedToDos}/{totalToDos}
+                {item.doneToDos}/{item.totalToDos}
               </Text>
             </View>
           )}

@@ -133,7 +133,6 @@ const Home = (props) => {
           />
         </View>
       </View>
-
       <TouchableOpacity onPress={() => props.navigation.navigate("Score")}>
         <Text>Score Page</Text>
       </TouchableOpacity>

@@ -61,14 +61,10 @@ const CustomDrawer = (props) => {
               justifyContent: "center",
               alignSelf: "center",
             }}
-<<<<<<< HEAD
-          ></Text>
-=======
           >
             Yiley Belete
             {/* {user.providerData[0].displayName} */}
           </Text>
->>>>>>> eb8b74fdf93e76c496c406595feadcb2b596be4c
           <View style={{ flexDirection: "row" }}>
             <Text
               style={{

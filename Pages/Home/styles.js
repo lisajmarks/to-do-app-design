@@ -9,19 +9,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   listContainer: {
-    borderWidth: 1,
-    color: "black",
+    borderWidth: 0,
+    color: "white",
     width: 250,
   },
   listItem: {
-    borderBottomWidth: 1,
-    color: "black",
-    padding: 10,
+    borderBottomWidth: 0,
+    color: "white",
+    padding: 8,
     textAlign: "right",
   },
   rightAction: {
     backgroundColor: "blue",
-    width: 230,
+    width: 150,
   },
   textAction: {
     color: "white",
@@ -34,6 +34,8 @@ const styles = StyleSheet.create({
   item: {
     flexDirection: "row",
     padding: 10,
+    color: "gray",
+    backgroundColor: "white",
   },
 });
 export default styles;

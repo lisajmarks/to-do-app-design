@@ -4,6 +4,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
+    backgroundColor: "#F2F1F6",
   },
   swipeContainer: {
     flexDirection: "row",
@@ -36,6 +37,21 @@ const styles = StyleSheet.create({
     padding: 10,
     color: "gray",
     backgroundColor: "white",
+  },
+
+  personIcon: {
+    color: "black",
+    flexDirection: "row",
+    alignSelf: "flex-end",
+    padding: 20,
+  },
+
+  completed: {
+    fontWeight: "bold",
+    backgroundColor: "#656565",
+    padding: 5,
+    color: "white",
+    flexDirection: "row",
   },
 });
 export default styles;

@@ -96,9 +96,11 @@ const Home = (props) => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
-        <Ionicons name="person-circle-outline" size={24} color="black" />
-      </TouchableOpacity>
+      <View style={styles.personIcon}>
+        <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
+          <Ionicons name="person-circle-outline" size={35} />
+        </TouchableOpacity>
+      </View>
       <Text>Things To Do!</Text>
       <Text>Current date: {currentDate}</Text>
       <View>
@@ -124,7 +126,7 @@ const Home = (props) => {
           />
         </View>
         <View style={styles.listContainer}>
-          <Text> Completed To Dos</Text>
+          <Text style={styles.completed}> Completed </Text>
           <FlatList
             data={completedToDos}
             renderItem={({ item }) => (

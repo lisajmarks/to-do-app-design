@@ -126,7 +126,7 @@ const Home = (props) => {
           />
         </View>
         <View style={styles.listContainer}>
-          <Text> Completed To Dos</Text>
+          <Text style={styles.completed}> Completed </Text>
           <FlatList
             data={completedToDos}
             renderItem={({ item }) => (

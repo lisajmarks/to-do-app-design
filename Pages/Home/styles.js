@@ -45,5 +45,13 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     padding: 20,
   },
+
+  completed: {
+    fontWeight: "bold",
+    backgroundColor: "#656565",
+    padding: 5,
+    color: "white",
+    flexDirection: "row",
+  },
 });
 export default styles;

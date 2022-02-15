@@ -104,10 +104,6 @@ const Home = (props) => {
       <Text>Things To Do!</Text>
       <Text>Current date: {currentDate}</Text>
       <View>
-        <TouchableOpacity onPress={() => onAdd()}>
-          <AntDesign name="plus" size={15} color="#000" />
-        </TouchableOpacity>
-
         <TextInput
           placeholder="Add to do item"
           value={newToDo}
@@ -135,12 +131,17 @@ const Home = (props) => {
           />
         </View>
       </View>
-      <TouchableOpacity onPress={() => props.navigation.navigate("Score")}>
+      {/* <TouchableOpacity onPress={() => props.navigation.navigate("Score")}>
         <Text>Score Page</Text>
-      </TouchableOpacity>
-      <View style={{ marginTop: 50 }}>
+      </TouchableOpacity> */}
+      {/* <View style={{ marginTop: 50 }}>
         <TouchableOpacity onPress={signout}>
           <Text>Sign Out</Text>
+        </TouchableOpacity>
+      </View> */}
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity onPress={() => onAdd()}>
+          <Text style={styles.submitButton}>Add New </Text>
         </TouchableOpacity>
       </View>
     </View>

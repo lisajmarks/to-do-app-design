@@ -53,5 +53,21 @@ const styles = StyleSheet.create({
     color: "white",
     flexDirection: "row",
   },
+
+  buttonContainer: {
+    backgroundColor: "#39A5B0",
+    borderRadius: 15,
+    paddingVertical: 10,
+    paddingHorizontal: 75,
+  },
+
+  submitButton: {
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    textAlign: "center",
+    color: "white",
+    fontWeight: "bold",
+  },
 });
 export default styles;

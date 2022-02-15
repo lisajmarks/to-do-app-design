@@ -6,8 +6,8 @@ import styles from "./styles";
 import EmailModal from "../../constants/EmailModal";
 import PassModal from "../../constants/PassModal";
 const Profile = (props) => {
-  const [nameEdit, setNameEdit] = useState(false);
-  const [numberEdit, setNumberEdit] = useState(false);
+  const [nameEdit, setNameEdit] = useState(true);
+  const [numberEdit, setNumberEdit] = useState(true);
   const auth = getAuth();
   const user = auth.currentUser;
   const [profiledata, setProfileData] = useState({

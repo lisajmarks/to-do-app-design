@@ -10,9 +10,9 @@ import {
 import { getDatabase, ref, onValue, set, push } from "firebase/database";
 import { AntDesign } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-import { confirmPasswordReset } from "firebase/auth";
+// import { confirmPasswordReset } from "firebase/auth";
 import TaskItem from "./TaskItem";
-import { Swipeable } from "react-native-gesture-handler";
+// import { Swipeable } from "react-native-gesture-handler";
 import styles from "./styles";
 
 const Home = (props) => {
@@ -133,7 +133,6 @@ const Home = (props) => {
           />
         </View>
       </View>
-
       <TouchableOpacity onPress={() => props.navigation.navigate("Score")}>
         <Text>Score Page</Text>
       </TouchableOpacity>

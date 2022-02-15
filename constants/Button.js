@@ -14,11 +14,17 @@ const styles = StyleSheet.create({
   button: {
     flexDirection: "row",
     borderRadius: 25,
-    backgroundColor: Colors.darkGray,
+    backgroundColor: Colors.lightGray,
     height: 48,
     margin: 16,
     justifyContent: "center",
     alignItems: "center",
   },
-  text: { color: "white", fontSize: 24, fontWeight: "bold" },
+  text: {
+    color: "white",
+    fontSize: 36,
+    fontWeight: "bold",
+    lineHeight: 35,
+    letterSpacing: -0.08,
+  },
 });

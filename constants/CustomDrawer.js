@@ -14,17 +14,7 @@ import {
 
 import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
-import { getDatabase, ref, onValue, set } from "firebase/database";
-
-import { getAuth } from "firebase/auth";
-
-// const auth = getAuth();
-// const user = auth.currentUser;
-// const db = getDatabase();
-//get database to db
-// const reference = ref(db, "profiles/" + props.userId);
-//setting word reference to mean "go to this pathway (db > profiles > userId)"
-// const allProfilesRef = ref(db, "profiles/");
+import { useFonts, Pacifico } from "@expo-google-fonts/pacifico";
 
 const CustomDrawer = (props) => {
   const signout = () => {

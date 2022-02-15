@@ -34,9 +34,15 @@ export default function App() {
         )}
         screenOptions={{
           drawerPosition: "right",
+          // headerShown: false,
         }}
       >
-        <Drawer.Screen name="Auth">
+        <Drawer.Screen
+          name="Auth"
+          options={{
+            headerShown: false,
+          }}
+        >
           {(props) => (
             <Auth userId={userId} userAuth={userAuth} {...props}>
               Auth

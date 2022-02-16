@@ -5,9 +5,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#F2F1F6",
   },
   title: {
-    fontWeight: 700,
     fontSize: 24,
     marginBottom: 10,
+    fontFamily: "Assistant_400Regular",
   },
   scoreMenu: {
     borderRadius: 20,
@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
     fontSize: 18,
+    fontFamily: "Assistant_400Regular",
   },
   activeText: {
     backgroundColor: "white",

@@ -8,6 +8,16 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import "./firebase";
 import "react-native-gesture-handler";
 import CustomDrawer from "./constants/CustomDrawer";
+import {
+  Assistant_200ExtraLight,
+  Assistant_300Light,
+  Assistant_400Regular,
+  Assistant_600SemiBold,
+  Assistant_700Bold,
+  Assistant_800ExtraBold,
+} from "@expo-google-fonts/assistant";
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
 
 import Profile from "./Pages/Profile/Profile";
 import Auth from "./Pages/Auth/Auth";
@@ -18,6 +28,16 @@ const Drawer = createDrawerNavigator();
 export default function App() {
   const userAuth = getAuth();
   const [userId, setUserId] = useState("");
+
+  let [fontsLoaded, error] = useFonts({
+    Assistant_200ExtraLight,
+    Assistant_300Light,
+    Assistant_400Regular,
+    Assistant_600SemiBold,
+    Assistant_700Bold,
+    Assistant_800ExtraBold,
+    "Pacifico-Regular": require("./assets/fonts/Pacifico-Regular.ttf"),
+  });
 
   useEffect(() => {
     onAuthStateChanged(userAuth, (user) => {

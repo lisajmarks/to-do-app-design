@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, FlatList } from "react-native";
-import { getDatabase, ref, onValue, set } from "firebase/database";
+import { View, Text, FlatList } from "react-native";
+import { getDatabase, ref, onValue } from "firebase/database";
 import { getAuth } from "firebase/auth";
 import styles from "./styles";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -12,22 +12,17 @@ const Score = (props) => {
   const [firstPlace, setFirstPlace] = useState("");
   const [secondPlace, setSecondPlace] = useState("");
   const [thirdPlace, setThirdPlace] = useState("");
-  const [totalToDos, setTotalToDos] = useState(0);
-  const [completedToDos, setCompletedToDos] = useState(0);
 
-  const auth = getAuth();
-  const user = auth.currentUser;
   const db = getDatabase();
   //get database to db
   const reference = ref(db, "profiles/" + props.userId);
   //setting word reference to mean "go to this pathway (db > profiles > userId)"
   const allProfilesRef = ref(db, "profiles/");
-  const toDoListRef = ref(db, "toDoList/" + props.userId);
 
   useEffect(() => {
     onValue(reference, (snapshot) => {
       if (snapshot.val() !== null) {
-        const totalpoints = snapshot.val().currentScore;
+        const totalpoints = snapshot.val().doneToDos;
         setTotalPoints(totalpoints);
       }
     });
@@ -42,10 +37,10 @@ const Score = (props) => {
       const data = snapshot.val();
       let result = Object.keys(data)
         .map((key) => data[key])
-        .sort((a, b) => b.currentScore - a.currentScore);
+        .sort((a, b) => b.doneToDos - a.doneToDos);
 
       setAllProfiles(result);
-      setHighScore(result[0].currentScore);
+      setHighScore(result[0].doneToDos);
       setFirstPlace(result[0].name);
       setSecondPlace(result[1].name);
       setThirdPlace(result[2].name);

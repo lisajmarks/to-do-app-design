@@ -17,7 +17,7 @@ import {
 } from "firebase/database";
 import { AntDesign } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-import { confirmPasswordReset } from "firebase/auth";
+import { confirmPasswordReset, getAuth } from "firebase/auth";
 import TaskItem from "./TaskItem";
 import { Swipeable } from "react-native-gesture-handler";
 import styles from "./styles";
@@ -37,6 +37,8 @@ const Home = (props) => {
   const reference = ref(db, "profiles/" + props.userId);
   const newToDoRef = push(toDoListRef);
   //add new to do to end of toDoListRef
+  const auth = getAuth();
+  const user = auth.currentUser;
 
   useEffect(() => {
     const day = [
@@ -100,8 +102,10 @@ const Home = (props) => {
 
   useEffect(() => {
     update(reference, {
+      name: user.providerData[0].displayName,
       doneToDos: completedToDos.length,
       totalToDos: allToDos,
+      currentScore: 0,
     });
   });
 

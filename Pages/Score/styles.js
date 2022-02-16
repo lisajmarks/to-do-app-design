@@ -5,16 +5,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#F2F1F6",
   },
   title: {
-    fontWeight: "bold",
+    fontWeight: 700,
     fontSize: 24,
     marginBottom: 10,
   },
   scoreMenu: {
     borderRadius: 20,
-    backgroundColor: "#ff1493",
+    backgroundColor: "#BB4976",
     flexDirection: "row",
     justifyContent: "space-around",
-    height: 30,
+    height: 35,
     alignItems: "center",
   },
   scoreMenuText: {
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
   activeText: {
     backgroundColor: "white",
-    color: "#ff1493",
+    color: "#BB4976",
     borderRadius: 15,
     padding: 3,
     paddingHorizontal: 20,
@@ -36,11 +36,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 50,
   },
+  trophyText: {
+    flexDirection: "column",
+  },
   top3Text: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: "bold",
     color: "black",
     textAlign: "center",
+    fontFamily: "sans-serif",
   },
   trophies: {
     width: 75,
@@ -60,8 +64,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignSelf: "stretch",
     backgroundColor: "white",
-    height: 50,
-    marginBottom: 10,
+    height: 72,
+    marginBottom: 25,
     alignItems: "center",
   },
   rank: {

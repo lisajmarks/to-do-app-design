@@ -11,8 +11,8 @@ const Profile = (props) => {
   const auth = getAuth();
   const user = auth.currentUser;
   const [profiledata, setProfileData] = useState({
-    name: user ? user.providerData[0].displayName : "",
-    number: user ? user.providerData[0].phoneNumber : "",
+    name: user ? user.providerData[0].displayName : "Name",
+    number: user ? user.providerData[0].phoneNumber : "Number",
     email: user ? user.providerData[0].email : "",
     currentScore: 0,
     doneToDos: 0,
@@ -50,17 +50,9 @@ const Profile = (props) => {
   }, [props.userId]);
 
   const saveNumberToFirebase = () => {
-    if (profiledata.number === null) {
-      set(profileRef, {
-        number: profiledata.number,
-        currentScore: profiledata.currentScore,
-        name: user.providerData[0].displayName,
-      }).catch((err) => console.log(err));
-    } else {
-      update(profileRef, {
-        number: profiledata.number,
-      });
-    }
+    update(profileRef, {
+      number: profiledata.number,
+    });
   };
   const onSubmit = () => {
     updateProfile(user, {
@@ -68,10 +60,14 @@ const Profile = (props) => {
     })
       .then(() => {
         console.log("successfully saved");
+        console.log(user.providerData[0]);
       })
       .catch((error) => {
         console.log("error ==>", error);
       });
+    update(profileRef, {
+      name: profiledata.name,
+    });
   };
   const onChangeText = (text, field) => {
     setProfileData({ ...profiledata, [field]: text });
@@ -103,7 +99,7 @@ const Profile = (props) => {
         />
       ) : (
         <Pressable onPress={() => setNameEdit(!nameEdit)}>
-          <Text>{profiledata ? profiledata.name : "Name"}</Text>
+          <Text>{profiledata.name ? profiledata.name : "Name"}</Text>
         </Pressable>
       )}
       {numberEdit ? (

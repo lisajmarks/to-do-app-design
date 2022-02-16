@@ -32,22 +32,6 @@ const Score = (props) => {
       }
     });
   }, []);
-  // useEffect(() => {
-  //   onValue(toDoListRef, (snapshot) => {
-  //     const data = snapshot.val();
-  //     let result = Object.keys(data).map((key) => data[key]);
-
-  //     let completedToDos = [];
-
-  //     result.map((item) => {
-  //       if (item.complete) {
-  //         completedToDos.push(item);
-  //       }
-  //     });
-  //     setTotalToDos(result.length);
-  //     setCompletedToDos(completedToDos.length);
-  //   });
-  // }, []);
 
   //when we get value go to your reference pathway and take a snapshot
   //if snapshot value has something there, assign value to totalpoints
@@ -87,10 +71,10 @@ const Score = (props) => {
           color="silver"
           style={styles.trophies}
         >
-          <Text style={styles.top3Text}>
-            {"\n"}2nd{"\n"}
-            {secondPlace}
-          </Text>
+          <View style={styles.trophyText}>
+            <Text style={styles.top3Text}>2nd</Text>
+            <Text style={styles.top3Text}>{secondPlace}</Text>
+          </View>
         </FontAwesome5>
         <FontAwesome5
           name="trophy"
@@ -98,10 +82,10 @@ const Score = (props) => {
           color="gold"
           style={styles.trophies}
         >
-          <Text style={styles.top3Text}>
-            {"\n"}1st{"\n"}
-            {firstPlace}
-          </Text>
+          <View style={styles.trophyText}>
+            <Text style={styles.top3Text}>1st</Text>
+            <Text style={styles.top3Text}>{firstPlace}</Text>
+          </View>
         </FontAwesome5>
         <FontAwesome5
           name="trophy"
@@ -109,10 +93,10 @@ const Score = (props) => {
           color="#ff8c00"
           style={styles.trophies}
         >
-          <Text style={styles.top3Text}>
-            {"\n"}3rd{"\n"}
-            {thirdPlace}
-          </Text>
+          <View style={styles.trophyText}>
+            <Text style={styles.top3Text}>3rd</Text>
+            <Text style={styles.top3Text}>{thirdPlace}</Text>
+          </View>
         </FontAwesome5>
       </View>
       <View style={styles.flatListContainer}>

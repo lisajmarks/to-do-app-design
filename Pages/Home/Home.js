@@ -155,14 +155,6 @@ const Home = (props) => {
           />
         </View>
       </View>
-      {/* <TouchableOpacity onPress={() => props.navigation.navigate("Score")}>
-        <Text>Score Page</Text>
-      </TouchableOpacity> */}
-      {/* <View style={{ marginTop: 50 }}>
-        <TouchableOpacity onPress={signout}>
-          <Text>Sign Out</Text>
-        </TouchableOpacity>
-      </View> */}
       <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={() => onAdd()}>
           <Text style={styles.submitButton}>Add New </Text>

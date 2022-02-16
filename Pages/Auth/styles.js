@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   },
   header: {
     fontFamily: Pacifico,
-
+    marginTop: 100,
     fontSize: 96,
     color: Colors.green,
     alignSelf: "center",

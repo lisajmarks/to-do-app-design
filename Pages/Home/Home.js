@@ -126,8 +126,7 @@ const Home = (props) => {
           <Ionicons name="person-circle-outline" size={35} />
         </TouchableOpacity>
       </View>
-      <Text>Things To Do!</Text>
-      <Text>Current date: {currentDate}</Text>
+      <Text>Today {currentDate}</Text>
       <View>
         <TextInput
           placeholder="Add to do item"

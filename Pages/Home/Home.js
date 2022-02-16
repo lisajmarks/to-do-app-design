@@ -127,7 +127,7 @@ const Home = (props) => {
         </TouchableOpacity>
       </View>
       <Text>Things To Do!</Text>
-      <Text>Current date: {currentDate}</Text>
+      <Text>Today: {currentDate}</Text>
       <View>
         <TextInput
           placeholder="Add to do item"

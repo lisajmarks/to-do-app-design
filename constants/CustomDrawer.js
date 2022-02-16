@@ -14,6 +14,7 @@ import {
 
 import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+// import { useFonts, Pacifico } from "@expo-google-fonts/pacifico";
 import { useFonts, Pacifico } from "@expo-google-fonts/pacifico";
 
 const CustomDrawer = (props) => {
@@ -28,11 +29,12 @@ const CustomDrawer = (props) => {
           <Text
             style={{
               color: "#39A5B0",
-              fontSize: 46.6849,
+              fontSize: 20,
+              // paddingTop: 180,
               fontFamily: "Pacifico",
               fontStyle: "normal",
               fontWeight: "normal",
-              lineHeight: 46,
+              lineHeight: 10,
               justifyContent: "center",
               alignSelf: "center",
               letterSpacing: -0.08,

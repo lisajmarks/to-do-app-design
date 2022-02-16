@@ -6,7 +6,7 @@ export default ({
   labelStyle,
   label,
   errorMessage,
-  inputStyle,
+  // inputStyle,
   text,
   onChangeText,
   ...inputProps
@@ -20,7 +20,11 @@ export default ({
       <TextInput
         underlineColorAndroid="transparent"
         selectionColor="transparent"
-        style={[styles.input, { outline: "none" }, inputStyle]}
+        style={[
+          styles.input,
+          { outline: "none" },
+          // inputStyle
+        ]}
         value={text}
         onChangeText={onChangeText}
         {...inputProps}
@@ -36,11 +40,15 @@ const styles = StyleSheet.create({
   },
   labelContainer: { flexDirection: "row", marginBottom: 4 },
   error: {
-    color: Colors.lightGray,
+    color: Colors.red,
     fontSize: 12,
     marginLeft: 4,
   },
   input: {
+    width: 307,
+    height: 70,
+    alignSelf: "center",
+    textAlign: "center",
     backgroundColor: Colors.lightGray,
     borderBottomColor: Colors.lightGray,
     borderBottomWidth: 1,
@@ -48,5 +56,6 @@ const styles = StyleSheet.create({
     height: 32,
     fontSize: 24,
     color: Colors.red,
+    borderRadius: 40,
   },
 });

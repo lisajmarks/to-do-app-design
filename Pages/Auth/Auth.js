@@ -59,7 +59,8 @@ const Login = (props) => {
       {/* <Text>Create your account</Text> */}
       <View style={{ flex: 1 }}>
         <LabeledInput
-          label="Email"
+          label=""
+          placeholder="Enter Email"
           text={emailField.text}
           onChangeText={(text) => {
             setEmailField({ text });
@@ -69,7 +70,8 @@ const Login = (props) => {
           autoCompleteType="email"
         />
         <LabeledInput
-          label="Password"
+          label=""
+          placeholder="Password"
           text={passwordField.text}
           onChangeText={(text) => {
             setPasswordField({ text });
@@ -138,8 +140,14 @@ const Login = (props) => {
               : login(emailField.text, passwordField.text);
           }
         }}
-        buttonStyle={{ backgroundColor: Colors.orange }}
-        text={isCreateMode ? "Create Account" : "Login"}
+        buttonStyle={{
+          backgroundColor: Colors.orange,
+          width: 155,
+          height: 95,
+          marginBottom: 10,
+          alignSelf: "center",
+        }}
+        text={isCreateMode ? `"Create Account"` : "Login"}
       />
     </View>
   );

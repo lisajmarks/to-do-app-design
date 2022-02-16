@@ -1,4 +1,3 @@
-import React from "react";
 import { StyleSheet } from "react-native";
 import Colors from "../../constants/Colors";
 import { useFonts, Pacifico } from "@expo-google-fonts/pacifico";

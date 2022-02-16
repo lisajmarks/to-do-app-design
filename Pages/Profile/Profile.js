@@ -6,15 +6,17 @@ import styles from "./styles";
 import EmailModal from "../../constants/EmailModal";
 import PassModal from "../../constants/PassModal";
 const Profile = (props) => {
-  const [nameEdit, setNameEdit] = useState(false);
-  const [numberEdit, setNumberEdit] = useState(false);
+  const [nameEdit, setNameEdit] = useState(true);
+  const [numberEdit, setNumberEdit] = useState(true);
   const auth = getAuth();
   const user = auth.currentUser;
   const [profiledata, setProfileData] = useState({
-    name: user ? user.providerData[0].displayName : "",
-    number: user ? user.providerData[0].phoneNumber : "",
+    name: user ? user.providerData[0].displayName : "Name",
+    number: user ? user.providerData[0].phoneNumber : "Number",
     email: user ? user.providerData[0].email : "",
     currentScore: 0,
+    doneToDos: 0,
+    totalToDos: 0,
   });
   const db = getDatabase();
   const profileRef = ref(db, "profiles/" + props.userId);
@@ -46,19 +48,11 @@ const Profile = (props) => {
       console.log("profiles/" + props.userId);
     }
   }, [props.userId]);
-  // console.log("what is this===>", profiledata.number);
+
   const saveNumberToFirebase = () => {
-    if (profiledata.number === null) {
-      set(profileRef, {
-        number: profiledata.number,
-        currentScore: profiledata.currentScore,
-        name: user.providerData[0].displayName,
-      }).catch((err) => console.log(err));
-    } else {
-      update(profileRef, {
-        number: profiledata.number,
-      });
-    }
+    update(profileRef, {
+      number: profiledata.number,
+    });
   };
   const onSubmit = () => {
     updateProfile(user, {
@@ -66,11 +60,14 @@ const Profile = (props) => {
     })
       .then(() => {
         console.log("successfully saved");
-        // console.log(user.providerData[0]);
+        console.log(user.providerData[0]);
       })
       .catch((error) => {
         console.log("error ==>", error);
       });
+    update(profileRef, {
+      name: profiledata.name,
+    });
   };
   const onChangeText = (text, field) => {
     setProfileData({ ...profiledata, [field]: text });
@@ -102,7 +99,7 @@ const Profile = (props) => {
         />
       ) : (
         <Pressable onPress={() => setNameEdit(!nameEdit)}>
-          <Text>{profiledata ? profiledata.name : "Name"}</Text>
+          <Text>{profiledata.name ? profiledata.name : "Name"}</Text>
         </Pressable>
       )}
       {numberEdit ? (

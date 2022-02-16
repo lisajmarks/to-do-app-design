@@ -64,9 +64,9 @@ const TaskItem = ({ item, db, userId }) => {
 
     if (!item.pointGiven) {
       if (currScore === null) {
-        set(userPointsRef, { currentScore: 1 });
+        set(userPointsRef, { doneToDos: 1 });
       } else {
-        update(userPointsRef, { currentScore: currScore + 1 });
+        update(userPointsRef, { doneToDos: currScore + 1 });
       }
     }
   };

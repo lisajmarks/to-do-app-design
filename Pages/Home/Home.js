@@ -7,12 +7,19 @@ import {
   FlatList,
   Pressable,
 } from "react-native";
-import { getDatabase, ref, onValue, set, push } from "firebase/database";
+import {
+  getDatabase,
+  ref,
+  onValue,
+  set,
+  push,
+  update,
+} from "firebase/database";
 import { AntDesign } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-// import { confirmPasswordReset } from "firebase/auth";
+import { confirmPasswordReset, getAuth } from "firebase/auth";
 import TaskItem from "./TaskItem";
-// import { Swipeable } from "react-native-gesture-handler";
+import { Swipeable } from "react-native-gesture-handler";
 import styles from "./styles";
 
 const Home = (props) => {
@@ -22,12 +29,16 @@ const Home = (props) => {
   const [completeToDo, setCompleteToDo] = useState(false);
   const [point, setPoint] = useState(false);
   const [currentDate, setCurrentDate] = useState("");
+  const [allToDos, setAllToDos] = useState(0);
 
   const db = getDatabase();
   const toDoListRef = ref(db, "toDoList/" + props.userId);
   //go to this userId
+  const reference = ref(db, "profiles/" + props.userId);
   const newToDoRef = push(toDoListRef);
   //add new to do to end of toDoListRef
+  const auth = getAuth();
+  const user = auth.currentUser;
 
   useEffect(() => {
     const day = [
@@ -68,6 +79,7 @@ const Home = (props) => {
 
         let completedToDos = [];
         let incompleteToDos = [];
+        let allToDos = [];
 
         result.map((item) => {
           if (item.complete) {
@@ -75,15 +87,28 @@ const Home = (props) => {
           } else {
             incompleteToDos.push(item);
           }
+          allToDos.push(item.todo);
         });
         setToDos(incompleteToDos);
         setCompletedToDos(completedToDos);
+        setAllToDos(allToDos.length);
       } else {
         setToDos([]);
         setCompletedToDos([]);
+        setAllToDos(0);
       }
     });
   }, []);
+
+  useEffect(() => {
+    update(reference, {
+      name: user.providerData[0].displayName,
+      doneToDos: completedToDos.length,
+      totalToDos: allToDos,
+      currentScore: 0,
+    });
+  });
+
   //Object.keys gets the data out in a way that it can be rendered
   // if else prevents error from null
 
@@ -96,16 +121,14 @@ const Home = (props) => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
-        <Ionicons name="person-circle-outline" size={24} color="black" />
-      </TouchableOpacity>
-      <Text>Things To Do!</Text>
-      <Text>Current date: {currentDate}</Text>
-      <View>
-        <TouchableOpacity onPress={() => onAdd()}>
-          <AntDesign name="plus" size={15} color="#000" />
+      <View style={styles.personIcon}>
+        <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
+          <Ionicons name="person-circle-outline" size={35} />
         </TouchableOpacity>
-
+      </View>
+      <Text>Things To Do!</Text>
+      <Text>Today: {currentDate}</Text>
+      <View>
         <TextInput
           placeholder="Add to do item"
           value={newToDo}
@@ -124,7 +147,7 @@ const Home = (props) => {
           />
         </View>
         <View style={styles.listContainer}>
-          <Text> Completed To Dos</Text>
+          <Text style={styles.completed}> Completed </Text>
           <FlatList
             data={completedToDos}
             renderItem={({ item }) => (
@@ -133,12 +156,17 @@ const Home = (props) => {
           />
         </View>
       </View>
-      <TouchableOpacity onPress={() => props.navigation.navigate("Score")}>
+      {/* <TouchableOpacity onPress={() => props.navigation.navigate("Score")}>
         <Text>Score Page</Text>
-      </TouchableOpacity>
-      <View style={{ marginTop: 50 }}>
+      </TouchableOpacity> */}
+      {/* <View style={{ marginTop: 50 }}>
         <TouchableOpacity onPress={signout}>
           <Text>Sign Out</Text>
+        </TouchableOpacity>
+      </View> */}
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity onPress={() => onAdd()}>
+          <Text style={styles.submitButton}>Add New </Text>
         </TouchableOpacity>
       </View>
     </View>

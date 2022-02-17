@@ -25,6 +25,12 @@ const styles = StyleSheet.create({
     borderRadius: 1,
     borderWidth: 1,
   },
+  myInformation: {
+    flexDirection: "row",
+    padding: 20,
+    color: "black",
+    backgroundColor: "white",
+  },
 });
 
 export default styles;

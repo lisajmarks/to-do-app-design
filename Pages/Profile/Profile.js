@@ -88,7 +88,12 @@ const Profile = (props) => {
         profiledata={profiledata}
         setProfileData={setProfileData}
       />
-      <Text>MY INFORMATION</Text>
+      <Text>
+        <TextInput
+          placeholder={" MY INFORMATION "}
+          style={styles.myInformation}
+        ></TextInput>
+      </Text>
       {nameEdit ? (
         <TextInput
           placeholder="Name"

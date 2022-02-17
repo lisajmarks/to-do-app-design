@@ -126,8 +126,7 @@ const Home = (props) => {
           <Ionicons name="person-circle-outline" size={35} />
         </TouchableOpacity>
       </View>
-      <Text>Things To Do!</Text>
-      <Text>Current date: {currentDate}</Text>
+      <Text>Today {currentDate}</Text>
       <View>
         <TextInput
           placeholder="Add to do item"
@@ -156,14 +155,6 @@ const Home = (props) => {
           />
         </View>
       </View>
-      {/* <TouchableOpacity onPress={() => props.navigation.navigate("Score")}>
-        <Text>Score Page</Text>
-      </TouchableOpacity> */}
-      {/* <View style={{ marginTop: 50 }}>
-        <TouchableOpacity onPress={signout}>
-          <Text>Sign Out</Text>
-        </TouchableOpacity>
-      </View> */}
       <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={() => onAdd()}>
           <Text style={styles.submitButton}>Add New </Text>

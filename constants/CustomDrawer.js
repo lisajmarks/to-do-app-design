@@ -14,10 +14,12 @@ import {
 
 import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
-// import { useFonts, Pacifico } from "@expo-google-fonts/pacifico";
-import { useFonts, Pacifico } from "@expo-google-fonts/pacifico";
+import { useFonts, Pacifico_400Regular } from "@expo-google-fonts/pacifico";
 
 const CustomDrawer = (props) => {
+  let [fontsLoaded] = useFonts({
+    Pacifico_400Regular,
+  });
   const signout = () => {
     props.userAuth.signOut();
     props.navigation.navigate("Auth");
@@ -31,15 +33,14 @@ const CustomDrawer = (props) => {
               marginTop: 91,
               marginBottom: 65,
               color: "#39A5B0",
-              fontSize: 20,
+              fontSize: 47,
+              fontFamily: " Pacifico_400Regular",
+              // fontSize: 96,
 
-              fontFamily: "Pacifico",
-              fontStyle: "normal",
-              fontWeight: "normal",
               lineHeight: 10,
               justifyContent: "center",
               alignSelf: "center",
-              letterSpacing: -0.08,
+              // letterSpacing: -0.08,
             }}
           >
             Doozit
@@ -79,6 +80,7 @@ const CustomDrawer = (props) => {
         <TouchableOpacity onPress={signout}>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             {/* <Ionicons name="exit-outline" size={22} /> */}
+
             <Text
               style={{
                 fontSize: 15,

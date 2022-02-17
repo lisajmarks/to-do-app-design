@@ -9,8 +9,13 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import styles from "./styles";
+import { useFonts, Pacifico_400Regular } from "@expo-google-fonts/pacifico";
 
 const Login = (props) => {
+  let [fontsLoaded] = useFonts({
+    Pacifico_400Regular,
+  });
+
   const [isCreateMode, setCreateMode] = useState(false);
   const [emailField, setEmailField] = useState({
     text: "",
@@ -55,7 +60,18 @@ const Login = (props) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Doozit</Text>
+      <View style={styles.header}>
+        <Text
+          style={{
+            fontFamily: " Pacifico_400Regular",
+            fontSize: 96,
+            color: Colors.green,
+          }}
+        >
+          Doozit
+        </Text>
+      </View>
+
       {/* <Text>Create your account</Text> */}
       <View style={{ flex: 1 }}>
         <LabeledInput

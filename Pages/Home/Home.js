@@ -122,7 +122,7 @@ const Home = (props) => {
   return (
     <View style={styles.container}>
       <View style={styles.personIcon}>
-        <TouchableOpacity onPress={() => props.navigation.navigate("Profile")}>
+        <TouchableOpacity onPress={() => props.navigation.openDrawer()}>
           <Ionicons name="person-circle-outline" size={35} />
         </TouchableOpacity>
       </View>

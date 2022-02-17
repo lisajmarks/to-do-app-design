@@ -9,6 +9,12 @@ const styles = StyleSheet.create({
     alignItems: "left",
     backgroundColor: "#F2F1F6",
   },
+  personIcon: {
+    color: "black",
+    flexDirection: "row",
+    alignSelf: "flex-end",
+    padding: 20,
+  },
   header: {
     fontFamily: "bold",
     flexDirection: "row",

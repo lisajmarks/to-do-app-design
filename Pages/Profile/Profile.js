@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, TextInput, Pressable, Alert, Modal } from "react-native";
+import {
+  Text,
+  View,
+  TextInput,
+  Pressable,
+  Alert,
+  Modal,
+  TouchableOpacity,
+} from "react-native";
 import { getDatabase, ref, onValue, set, update } from "firebase/database";
 import { getAuth, updateProfile } from "firebase/auth";
 import styles from "./styles";
 import EmailModal from "../../constants/EmailModal";
 import PassModal from "../../constants/PassModal";
+import { Ionicons } from "@expo/vector-icons";
 const Profile = (props) => {
   const [nameEdit, setNameEdit] = useState(true);
   const [numberEdit, setNumberEdit] = useState(true);
@@ -76,6 +85,11 @@ const Profile = (props) => {
   const [passwordModal, setPasswordModal] = useState(false);
   return (
     <View style={styles.container}>
+      <View style={styles.personIcon}>
+        <TouchableOpacity onPress={() => props.navigation.openDrawer()}>
+          <Ionicons name="person-circle-outline" size={35} />
+        </TouchableOpacity>
+      </View>
       <EmailModal
         setEmailModal={setEmailModal}
         emailModal={emailModal}

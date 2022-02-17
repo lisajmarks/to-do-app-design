@@ -147,7 +147,7 @@ const Login = (props) => {
           marginBottom: 10,
           alignSelf: "center",
         }}
-        text={isCreateMode ? `"Create Account"` : "Login"}
+        text={isCreateMode ? "Create Account" : "Login"}
       />
     </View>
   );

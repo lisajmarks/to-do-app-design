@@ -23,14 +23,16 @@ const CustomDrawer = (props) => {
     props.navigation.navigate("Auth");
   };
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView>
       <View>
         <View>
           <Text
             style={{
+              marginTop: 91,
+              marginBottom: 65,
               color: "#39A5B0",
               fontSize: 20,
-              // paddingTop: 180,
+
               fontFamily: "Pacifico",
               fontStyle: "normal",
               fontWeight: "normal",
@@ -38,7 +40,6 @@ const CustomDrawer = (props) => {
               justifyContent: "center",
               alignSelf: "center",
               letterSpacing: -0.08,
-              //   border:2.91781 solid #FFF7F3,
             }}
           >
             Doozit
@@ -77,7 +78,7 @@ const CustomDrawer = (props) => {
       <View style={{ padding: 20, borderTopWidth: 1, borderTopColor: "#ccc" }}>
         <TouchableOpacity onPress={signout}>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <Ionicons name="exit-outline" size={22} />
+            {/* <Ionicons name="exit-outline" size={22} /> */}
             <Text
               style={{
                 fontSize: 15,
@@ -85,7 +86,7 @@ const CustomDrawer = (props) => {
                 marginLeft: 5,
               }}
             >
-              Sign Out
+              Log Out
             </Text>
           </View>
         </TouchableOpacity>

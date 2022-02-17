@@ -60,6 +60,8 @@ export default function App() {
         <Drawer.Screen
           name="Auth"
           options={{
+            drawerLabel: () => null, //This will make it not display Auth on the drawer .
+
             headerShown: false,
           }}
         >
@@ -86,7 +88,7 @@ export default function App() {
         <Drawer.Screen name="Score">
           {(props) => (
             <Score userId={userId} userAuth={userAuth} {...props}>
-              Score
+              Scoreboard
             </Score>
           )}
         </Drawer.Screen>

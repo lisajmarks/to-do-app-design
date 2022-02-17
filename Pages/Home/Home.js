@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   View,
   Text,
@@ -30,7 +30,9 @@ const Home = (props) => {
   const [point, setPoint] = useState(false);
   const [currentDate, setCurrentDate] = useState("");
   const [allToDos, setAllToDos] = useState(0);
+  const [show, setShow] = useState(false);
 
+  const inputRef = useRef(null);
   const db = getDatabase();
   const toDoListRef = ref(db, "toDoList/" + props.userId);
   //go to this userId
@@ -66,6 +68,7 @@ const Home = (props) => {
         point: point,
       }).catch((err) => console.log(err));
       setNewToDo("");
+      setShow(!show);
     }
   };
   //newToDoRef.key gives us the key for that specific to do
@@ -128,11 +131,15 @@ const Home = (props) => {
       </View>
       <Text>Today {currentDate}</Text>
       <View>
-        <TextInput
-          placeholder="Add to do item"
-          value={newToDo}
-          onChangeText={setNewToDo}
-        />
+        {show ? (
+          <TextInput
+            placeholder="Add to do item"
+            value={newToDo}
+            onChangeText={setNewToDo}
+            ref={inputRef}
+            onBlur={() => onAdd()}
+          />
+        ) : null}
       </View>
 
       <View>
@@ -156,7 +163,13 @@ const Home = (props) => {
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={() => onAdd()}>
+        <TouchableOpacity
+          onPress={() => {
+            console.log(current);
+            setShow(!show);
+            inputRef.current.focus();
+          }}
+        >
           <Text style={styles.submitButton}>Add New </Text>
         </TouchableOpacity>
       </View>

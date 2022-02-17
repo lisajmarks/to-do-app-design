@@ -102,7 +102,7 @@ const Home = (props) => {
 
   useEffect(() => {
     update(reference, {
-      name: user.providerData[0].displayName,
+      name: user ? user.providerData[0].displayName : "",
       doneToDos: completedToDos.length,
       totalToDos: allToDos,
       currentScore: 0,

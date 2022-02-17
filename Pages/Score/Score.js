@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, FlatList } from "react-native";
 import { getDatabase, ref, onValue } from "firebase/database";
-import { getAuth } from "firebase/auth";
 import styles from "./styles";
 import { FontAwesome5 } from "@expo/vector-icons";
 
@@ -62,8 +61,8 @@ const Score = (props) => {
       <View style={styles.top3}>
         <FontAwesome5
           name="trophy"
-          size={36}
-          color="silver"
+          size={50}
+          color="#B0B0B0"
           style={styles.trophies}
         >
           <View style={styles.trophyText}>
@@ -73,19 +72,21 @@ const Score = (props) => {
         </FontAwesome5>
         <FontAwesome5
           name="trophy"
-          size={48}
-          color="gold"
-          style={styles.trophies}
+          size={62}
+          color="#F2BC70"
+          style={styles.firstPlace}
         >
           <View style={styles.trophyText}>
-            <Text style={styles.top3Text}>1st</Text>
-            <Text style={styles.top3Text}>{firstPlace}</Text>
+            <Text style={[[styles.top3Text, styles.firstText]]}>1st</Text>
+            <Text style={[[styles.top3Text, styles.firstText]]}>
+              {firstPlace}
+            </Text>
           </View>
         </FontAwesome5>
         <FontAwesome5
           name="trophy"
-          size={36}
-          color="#ff8c00"
+          size={50}
+          color="#E37358"
           style={styles.trophies}
         >
           <View style={styles.trophyText}>
@@ -99,9 +100,11 @@ const Score = (props) => {
           data={allProfiles}
           renderItem={({ item, index }) => (
             <View key={index} style={styles.scoreList}>
-              <Text style={styles.rank}>{index + 1} </Text>
-              <Text style={styles.rankText}>{item.name}</Text>
-              <Text style={styles.rankText}>
+              <Text style={styles.rank}>{index + 1}</Text>
+              <Text style={[styles.rankText, styles.rankName]}>
+                {item.name}
+              </Text>
+              <Text style={[styles.rankText, styles.score]}>
                 {" "}
                 {item.doneToDos}/{item.totalToDos}
               </Text>

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import { getDatabase, ref, onValue } from "firebase/database";
 import styles from "./styles";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 const Score = (props) => {
   const [totalPoints, setTotalPoints] = useState(0);
@@ -52,6 +53,11 @@ const Score = (props) => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.personIcon}>
+        <TouchableOpacity onPress={() => props.navigation.openDrawer()}>
+          <Ionicons name="person-circle-outline" size={35} />
+        </TouchableOpacity>
+      </View>
       <Text style={styles.title}>Scoreboard</Text>
       <View style={styles.scoreMenu}>
         <Text style={(styles.scoreMenuText, styles.activeText)}>Record</Text>

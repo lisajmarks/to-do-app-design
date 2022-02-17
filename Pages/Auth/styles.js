@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import Colors from "../../constants/Colors";
-import { useFonts, Pacifico } from "@expo-google-fonts/pacifico";
+import { Pacifico_400Regular } from "@expo-google-fonts/pacifico";
 
 const styles = StyleSheet.create({
   container: {
@@ -15,10 +15,10 @@ const styles = StyleSheet.create({
     color: Colors.black,
   },
   header: {
-    fontFamily: Pacifico,
+    // fontFamily: Pacifico_400Regular,
     marginTop: 100,
-    fontSize: 96,
-    color: Colors.green,
+    // fontSize: 96,
+    // color: Colors.green,
     alignSelf: "center",
   },
   button: {

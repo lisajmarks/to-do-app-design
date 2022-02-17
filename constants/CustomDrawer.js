@@ -12,33 +12,34 @@ import {
   DrawerItemList,
 } from "@react-navigation/drawer";
 
-import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
-// import { useFonts, Pacifico } from "@expo-google-fonts/pacifico";
-import { useFonts, Pacifico } from "@expo-google-fonts/pacifico";
+import { useFonts, Pacifico_400Regular } from "@expo-google-fonts/pacifico";
 
 const CustomDrawer = (props) => {
+  let [fontsLoaded] = useFonts({
+    Pacifico_400Regular,
+  });
   const signout = () => {
     props.userAuth.signOut();
     props.navigation.navigate("Auth");
   };
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView>
       <View>
         <View>
           <Text
             style={{
+              marginTop: 91,
+              marginBottom: 65,
               color: "#39A5B0",
-              fontSize: 20,
-              // paddingTop: 180,
-              fontFamily: "Pacifico",
-              fontStyle: "normal",
-              fontWeight: "normal",
+              fontSize: 47,
+              fontFamily: " Pacifico_400Regular",
+              // fontSize: 96,
+
               lineHeight: 10,
               justifyContent: "center",
               alignSelf: "center",
-              letterSpacing: -0.08,
-              //   border:2.91781 solid #FFF7F3,
+              // letterSpacing: -0.08,
             }}
           >
             Doozit
@@ -77,7 +78,8 @@ const CustomDrawer = (props) => {
       <View style={{ padding: 20, borderTopWidth: 1, borderTopColor: "#ccc" }}>
         <TouchableOpacity onPress={signout}>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <Ionicons name="exit-outline" size={22} />
+            {/* <Ionicons name="exit-outline" size={22} /> */}
+
             <Text
               style={{
                 fontSize: 15,
@@ -85,7 +87,7 @@ const CustomDrawer = (props) => {
                 marginLeft: 5,
               }}
             >
-              Sign Out
+              Log Out
             </Text>
           </View>
         </TouchableOpacity>

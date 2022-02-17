@@ -18,6 +18,8 @@ import Profile from "./Pages/Profile/Profile";
 import Auth from "./Pages/Auth/Auth";
 import Home from "./Pages/Home/Home";
 import Score from "./Pages/Score/Score";
+import { Ionicons } from "@expo/vector-icons";
+
 const Drawer = createDrawerNavigator();
 
 export default function App() {
@@ -47,12 +49,14 @@ export default function App() {
         )}
         screenOptions={{
           drawerPosition: "right",
-          // headerShown: false,
+          headerShown: false,
         }}
       >
         <Drawer.Screen
           name="Auth"
           options={{
+            drawerLabel: () => null, //This will make it not display Auth on the drawer .
+
             headerShown: false,
           }}
         >
@@ -62,7 +66,7 @@ export default function App() {
             </Auth>
           )}
         </Drawer.Screen>
-        <Drawer.Screen name="Home" options={{ headerLeft: (props) => null }}>
+        <Drawer.Screen name="Home">
           {(props) => (
             <Home userId={userId} userAuth={userAuth} {...props}>
               Home
@@ -79,7 +83,7 @@ export default function App() {
         <Drawer.Screen name="Score">
           {(props) => (
             <Score userId={userId} userAuth={userAuth} {...props}>
-              Score
+              Scoreboard
             </Score>
           )}
         </Drawer.Screen>

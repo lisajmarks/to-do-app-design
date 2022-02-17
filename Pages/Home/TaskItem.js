@@ -3,7 +3,8 @@ import { View, Text, TextInput, Pressable, Animated } from "react-native";
 import { ref, update, remove, onValue, set } from "firebase/database";
 import styles from "./styles";
 import { Swipeable } from "react-native-gesture-handler";
-import { Ionicons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 
 const TaskItem = ({ item, db, userId }) => {
   const [toggleEdit, setToggleEdit] = useState(false);
@@ -113,9 +114,9 @@ const TaskItem = ({ item, db, userId }) => {
           <Pressable onPress={() => completeTask(item.id, item.todo)}>
             <Text>
               {item.complete ? (
-                <Ionicons name="square" size={25} />
+                <AntDesign name="checksquareo" size={24} color="black" />
               ) : (
-                <Ionicons name="square-outline" size={25} />
+                <Feather name="square" size={24} color="black" />
               )}
             </Text>
           </Pressable>

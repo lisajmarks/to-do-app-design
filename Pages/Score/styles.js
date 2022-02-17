@@ -5,6 +5,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#F2F1F6",
   },
+  personIcon: {
+    color: "black",
+    flexDirection: "row",
+    alignSelf: "flex-end",
+    padding: 20,
+  },
   title: {
     fontSize: 24,
     marginBottom: 10,

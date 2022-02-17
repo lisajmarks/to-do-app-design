@@ -124,10 +124,11 @@ const TaskItem = ({ item, db, userId }) => {
           ) : (
             <Pressable
               onPress={() => handleEdit(item.todo, item.id)}
-              style={{ color: item.complete ? "gray" : "black" }}
               disabled={item.complete ? true : false}
             >
-              <Text>{item.todo}</Text>
+              <Text style={{ color: item.complete ? "gray" : "black" }}>
+                {item.todo}
+              </Text>
             </Pressable>
           )}
         </View>

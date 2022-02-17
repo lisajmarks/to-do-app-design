@@ -11,8 +11,8 @@ const Profile = (props) => {
   const auth = getAuth();
   const user = auth.currentUser;
   const [profiledata, setProfileData] = useState({
-    name: user ? user.providerData[0].displayName : "Name",
-    number: user ? user.providerData[0].phoneNumber : "Number",
+    name: user ? user.providerData[0].displayName : "",
+    number: user ? user.providerData[0].phoneNumber : "",
     email: user ? user.providerData[0].email : "",
     currentScore: 0,
     doneToDos: 0,

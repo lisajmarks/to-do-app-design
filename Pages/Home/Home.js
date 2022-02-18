@@ -32,7 +32,8 @@ const Home = (props) => {
   const [allToDos, setAllToDos] = useState(0);
   const [show, setShow] = useState(false);
 
-  const inputRef = useRef(null);
+  const inputRef = useRef();
+
   const db = getDatabase();
   const toDoListRef = ref(db, "toDoList/" + props.userId);
   //go to this userId
@@ -131,17 +132,15 @@ const Home = (props) => {
       </View>
       <Text>Today {currentDate}</Text>
       <View>
-        {show ? (
-          <TextInput
-            placeholder="Add to do item"
-            value={newToDo}
-            onChangeText={setNewToDo}
-            ref={inputRef}
-            onBlur={() => onAdd()}
-          />
-        ) : null}
+        <TextInput
+          placeholder="Add to do item"
+          value={newToDo}
+          onChangeText={setNewToDo}
+          onBlur={() => onAdd()}
+          ref={inputRef}
+          style={{ height: show ? 20 : 0 }}
+        />
       </View>
-
       <View>
         <View style={styles.listContainer}>
           <FlatList
@@ -165,8 +164,7 @@ const Home = (props) => {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           onPress={() => {
-            console.log(current);
-            setShow(!show);
+            setShow(bool);
             inputRef.current.focus();
           }}
         >

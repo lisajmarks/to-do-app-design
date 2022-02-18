@@ -21,6 +21,7 @@ import { confirmPasswordReset, getAuth } from "firebase/auth";
 import TaskItem from "./TaskItem";
 import { Swipeable } from "react-native-gesture-handler";
 import styles from "./styles";
+import FloatingInput from "../../Components/FloatingInput/FloatingInput";
 
 const Home = (props) => {
   const [newToDo, setNewToDo] = useState("");
@@ -133,7 +134,14 @@ const Home = (props) => {
         </TouchableOpacity>
       </View>
       <Text>Today {currentDate}</Text>
-      <View style={{ position: "relative", height: 50, width: 250 }}>
+      <FloatingInput
+        show={show}
+        newToDo={newToDo}
+        setNewToDo={setNewToDo}
+        inputRef={inputRef}
+        onAdd={onAdd}
+      />
+      {/* <View style={{ position: "relative", height: 50, width: 250 }}>
         {!show ? (
           <View
             style={{
@@ -162,7 +170,7 @@ const Home = (props) => {
             left: 0,
           }}
         />
-      </View>
+      </View> */}
       <View>
         <View style={styles.listContainer}>
           <FlatList

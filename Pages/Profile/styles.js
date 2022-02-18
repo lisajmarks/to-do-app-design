@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F2F1F6",
-    alignItems: "stretch",
+    alignItems: "center",
     justifyContent: "space-between",
   },
   personIcon: {

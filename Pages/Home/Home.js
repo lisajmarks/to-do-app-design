@@ -70,13 +70,15 @@ const Home = (props) => {
       }).catch((err) => console.log(err));
       setNewToDo("");
       setShow(!show);
+    } else {
+      setShow(!show);
     }
   };
   //newToDoRef.key gives us the key for that specific to do
   //.catch catches any errors
 
   useEffect(() => {
-    onValue(toDoListRef, (snapshot) => {
+    return onValue(toDoListRef, (snapshot) => {
       if (snapshot.val() !== null) {
         const data = snapshot.val();
         let result = Object.keys(data).map((key) => data[key]);
@@ -131,14 +133,28 @@ const Home = (props) => {
         </TouchableOpacity>
       </View>
       <Text>Today {currentDate}</Text>
-      <View>
+      <View style={{ position: "relative" }}>
+        {!show ? (
+          <View
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: 300,
+              height: 50,
+              backgroundColor: "#F2F1F6",
+              zIndex: 10,
+            }}
+          />
+        ) : null}
+
         <TextInput
           placeholder="Add to do item"
           value={newToDo}
           onChangeText={setNewToDo}
           onBlur={() => onAdd()}
           ref={inputRef}
-          style={{ height: show ? 20 : 0 }}
+          style={{ height: 50 }}
         />
       </View>
       <View>
@@ -164,7 +180,7 @@ const Home = (props) => {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           onPress={() => {
-            setShow(bool);
+            setShow(!show);
             inputRef.current.focus();
           }}
         >

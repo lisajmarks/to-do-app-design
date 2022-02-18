@@ -5,6 +5,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F2F1F6",
+    alignItems: "stretch",
+    justifyContent: "space-between",
   },
   personIcon: {
     color: "black",
@@ -15,10 +17,10 @@ const styles = StyleSheet.create({
 
   input: {
     flexDirection: "row",
-    padding: 20,
+    padding: 30,
     color: "gray",
     backgroundColor: "white",
-    borderBottomWidth: 1,
+    borderBottomWidth: 0,
     textAlign: "left",
   },
 
@@ -27,8 +29,8 @@ const styles = StyleSheet.create({
     color: "black",
     backgroundColor: "white",
     borderRadius: 0,
-    padding: 20,
-    borderBottomWidth: 1,
+    padding: 30,
+    borderBottomWidth: 0,
     textAlign: "left",
   },
 
@@ -36,7 +38,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     color: "black",
     backgroundColor: "white",
-    padding: 10,
+    borderBottomWidth: 0,
+    padding: 30,
+    textAlign: "left",
+    borderRadius: 0,
   },
 });
 

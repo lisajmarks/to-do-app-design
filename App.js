@@ -56,36 +56,21 @@ export default function App() {
           name="Auth"
           options={{
             drawerLabel: () => null, //This will make it not display Auth on the drawer .
-
             headerShown: false,
           }}
         >
-          {(props) => (
-            <Auth userId={userId} userAuth={userAuth} {...props}>
-              Auth
-            </Auth>
-          )}
+          {(props) => <Auth userId={userId} userAuth={userAuth} {...props} />}
         </Drawer.Screen>
         <Drawer.Screen name="Home">
-          {(props) => (
-            <Home userId={userId} userAuth={userAuth} {...props}>
-              Home
-            </Home>
-          )}
+          {(props) => <Home userId={userId} userAuth={userAuth} {...props} />}
         </Drawer.Screen>
         <Drawer.Screen name="Profile">
           {(props) => (
-            <Profile userId={userId} userAuth={userAuth} {...props}>
-              Profile
-            </Profile>
+            <Profile userId={userId} userAuth={userAuth} {...props} />
           )}
         </Drawer.Screen>
         <Drawer.Screen name="Score">
-          {(props) => (
-            <Score userId={userId} userAuth={userAuth} {...props}>
-              Scoreboard
-            </Score>
-          )}
+          {(props) => <Score userId={userId} userAuth={userAuth} {...props} />}
         </Drawer.Screen>
       </Drawer.Navigator>
     </NavigationContainer>

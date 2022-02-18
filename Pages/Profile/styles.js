@@ -4,9 +4,6 @@ import { TextInput } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
-    justifyContent: "center",
-    alignItems: "left",
     backgroundColor: "#F2F1F6",
   },
   personIcon: {
@@ -15,27 +12,31 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     padding: 20,
   },
-  header: {
-    fontFamily: "bold",
-    flexDirection: "row",
-    justifyContent: "center",
-    padding: 10,
-    TextInput: "center",
-    alignItems: "center",
-  },
+
   input: {
     flexDirection: "row",
     padding: 20,
-    color: "black",
+    color: "gray",
     backgroundColor: "white",
-    borderRadius: 1,
-    borderWidth: 1,
+    borderBottomWidth: 1,
+    textAlign: "left",
   },
+
   myInformation: {
     flexDirection: "row",
-    padding: 20,
     color: "black",
     backgroundColor: "white",
+    borderRadius: 0,
+    padding: 20,
+    borderBottomWidth: 1,
+    textAlign: "left",
+  },
+
+  changePassword: {
+    flexDirection: "row",
+    color: "black",
+    backgroundColor: "white",
+    padding: 10,
   },
 });
 

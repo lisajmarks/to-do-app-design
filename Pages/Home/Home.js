@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   View,
   Text,
@@ -30,6 +30,9 @@ const Home = (props) => {
   const [point, setPoint] = useState(false);
   const [currentDate, setCurrentDate] = useState("");
   const [allToDos, setAllToDos] = useState(0);
+  const [show, setShow] = useState(false);
+
+  const inputRef = useRef();
 
   const db = getDatabase();
   const toDoListRef = ref(db, "toDoList/" + props.userId);
@@ -66,13 +69,16 @@ const Home = (props) => {
         point: point,
       }).catch((err) => console.log(err));
       setNewToDo("");
+      setShow(!show);
+    } else {
+      setShow(!show);
     }
   };
   //newToDoRef.key gives us the key for that specific to do
   //.catch catches any errors
 
   useEffect(() => {
-    onValue(toDoListRef, (snapshot) => {
+    return onValue(toDoListRef, (snapshot) => {
       if (snapshot.val() !== null) {
         const data = snapshot.val();
         let result = Object.keys(data).map((key) => data[key]);
@@ -127,14 +133,36 @@ const Home = (props) => {
         </TouchableOpacity>
       </View>
       <Text>Today {currentDate}</Text>
-      <View>
+      <View style={{ position: "relative", height: 50, width: 250 }}>
+        {!show ? (
+          <View
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: 250,
+              height: 50,
+              backgroundColor: "#F2F1F6",
+              zIndex: 10,
+            }}
+          />
+        ) : null}
+
         <TextInput
           placeholder="Add to do item"
           value={newToDo}
           onChangeText={setNewToDo}
+          onBlur={() => onAdd()}
+          ref={inputRef}
+          style={{
+            height: 50,
+            width: 250,
+            position: "absolute",
+            top: 0,
+            left: 0,
+          }}
         />
       </View>
-
       <View>
         <View style={styles.listContainer}>
           <FlatList
@@ -156,7 +184,12 @@ const Home = (props) => {
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={() => onAdd()}>
+        <TouchableOpacity
+          onPress={() => {
+            setShow(!show);
+            inputRef.current.focus();
+          }}
+        >
           <Text style={styles.submitButton}>Add New </Text>
         </TouchableOpacity>
       </View>

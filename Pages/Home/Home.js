@@ -133,14 +133,14 @@ const Home = (props) => {
         </TouchableOpacity>
       </View>
       <Text>Today {currentDate}</Text>
-      <View style={{ position: "relative" }}>
+      <View style={{ position: "relative", height: 50, width: 250 }}>
         {!show ? (
           <View
             style={{
               position: "absolute",
               top: 0,
               left: 0,
-              width: 300,
+              width: 250,
               height: 50,
               backgroundColor: "#F2F1F6",
               zIndex: 10,
@@ -154,7 +154,13 @@ const Home = (props) => {
           onChangeText={setNewToDo}
           onBlur={() => onAdd()}
           ref={inputRef}
-          style={{ height: 50 }}
+          style={{
+            height: 50,
+            width: 250,
+            position: "absolute",
+            top: 0,
+            left: 0,
+          }}
         />
       </View>
       <View>

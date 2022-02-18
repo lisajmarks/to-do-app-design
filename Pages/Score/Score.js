@@ -64,43 +64,41 @@ const Score = (props) => {
         <Text style={styles.scoreMenuText}>Week</Text>
         <Text style={styles.scoreMenuText}>Month</Text>
       </View>
-      <View style={styles.top3}>
+      <View style={styles.top3Trophies}>
         <FontAwesome5
           name="trophy"
           size={50}
           color="#B0B0B0"
           style={styles.trophies}
-        >
-          <View style={styles.trophyText}>
-            <Text style={styles.top3Text}>2nd</Text>
-            <Text style={styles.top3Text}>{secondPlace}</Text>
-          </View>
-        </FontAwesome5>
+        />
         <FontAwesome5
           name="trophy"
           size={62}
           color="#F2BC70"
           style={styles.firstPlace}
-        >
-          <View style={styles.trophyText}>
-            <Text style={[[styles.top3Text, styles.firstText]]}>1st</Text>
-            <Text style={[[styles.top3Text, styles.firstText]]}>
-              {firstPlace}
-            </Text>
-          </View>
-        </FontAwesome5>
+        />
         <FontAwesome5
           name="trophy"
           size={50}
           color="#E37358"
           style={styles.trophies}
-        >
-          <View style={styles.trophyText}>
-            <Text style={styles.top3Text}>3rd</Text>
-            <Text style={styles.top3Text}>{thirdPlace}</Text>
-          </View>
-        </FontAwesome5>
+        />
       </View>
+      <View style={styles.trophyText}>
+        <Text style={styles.top3Text}>
+          {"\n"}2nd{"\n"}
+          {secondPlace}
+        </Text>
+        <Text style={[styles.top3Text, styles.firstText]}>
+          {"\n"}1st{"\n"}
+          {firstPlace}
+        </Text>
+        <Text style={styles.top3Text}>
+          {"\n"}3rd{"\n"}
+          {thirdPlace}
+        </Text>
+      </View>
+
       <View style={styles.flatListContainer}>
         <FlatList
           data={allProfiles}

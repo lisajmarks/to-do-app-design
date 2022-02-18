@@ -14,6 +14,7 @@ import {
 
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { useFonts, Pacifico_400Regular } from "@expo-google-fonts/pacifico";
+import Score from "../Pages/Score/Score";
 
 const CustomDrawer = (props) => {
   let [fontsLoaded] = useFonts({
@@ -24,7 +25,7 @@ const CustomDrawer = (props) => {
     props.navigation.navigate("Auth");
   };
   return (
-    <SafeAreaView>
+    <DrawerContentScrollView>
       <View>
         <View>
           <Text
@@ -33,7 +34,7 @@ const CustomDrawer = (props) => {
               marginBottom: 65,
               color: "#39A5B0",
               fontSize: 47,
-              fontFamily: " Pacifico_400Regular",
+              fontFamily: "Pacifico_400Regular",
               // fontSize: 96,
 
               lineHeight: 10,
@@ -61,7 +62,7 @@ const CustomDrawer = (props) => {
             <Text
               style={{
                 color: "#fff",
-                fontFamily: "Roboto-Regular",
+                // fontFamily: "Roboto-Regular",
                 marginRight: 5,
               }}
             >
@@ -74,6 +75,7 @@ const CustomDrawer = (props) => {
           <DrawerItemList {...props} />
         </View>
       </View>
+
       <View style={{ padding: 20, borderTopWidth: 1, borderTopColor: "#ccc" }}>
         <TouchableOpacity onPress={signout}>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -82,7 +84,7 @@ const CustomDrawer = (props) => {
             <Text
               style={{
                 fontSize: 15,
-                fontFamily: "Roboto-Medium",
+                // fontFamily: "Roboto-Medium",
                 marginLeft: 5,
               }}
             >
@@ -91,7 +93,7 @@ const CustomDrawer = (props) => {
           </View>
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </DrawerContentScrollView>
   );
 };
 

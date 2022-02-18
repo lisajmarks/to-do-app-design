@@ -102,7 +102,12 @@ const Profile = (props) => {
         profiledata={profiledata}
         setProfileData={setProfileData}
       />
-      <Text>MY INFORMATION</Text>
+
+      <TextInput
+        placeholder={" MY INFORMATION "}
+        style={styles.myInformation}
+      ></TextInput>
+
       {nameEdit ? (
         <TextInput
           placeholder="Name"
@@ -131,10 +136,16 @@ const Profile = (props) => {
         </Pressable>
       )}
       <Pressable onPress={() => setEmailModal(!emailModal)}>
-        <Text>{profiledata ? profiledata.email : "No email saved"}</Text>
+        <Text style={styles.input}>
+          {profiledata ? profiledata.email : "No email saved"}
+        </Text>
       </Pressable>
+      {/* <TextInput placeholder={" Email "} style={styles.input}></TextInput> */}
       <Pressable onPress={() => setPasswordModal(!passwordModal)}>
-        <Text>CHANGE PASSWORD</Text>
+        <TextInput
+          placeholder={" CHANGE PASSWORD "}
+          style={styles.changePassword}
+        ></TextInput>
       </Pressable>
     </View>
   );

@@ -56,7 +56,6 @@ const CustomDrawer = (props) => {
               alignSelf: "center",
             }}
           >
-            Yiley Belete
             {/* {user.providerData[0].displayName} */}
           </Text>
           <View style={{ flexDirection: "row" }}>

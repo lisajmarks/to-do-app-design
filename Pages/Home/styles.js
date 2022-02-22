@@ -9,16 +9,20 @@ const styles = StyleSheet.create({
   swipeContainer: {
     flexDirection: "row",
   },
+
   listContainer: {
     borderWidth: 0,
     color: "white",
+    // flex: 3,
   },
+
   listItem: {
     borderBottomWidth: 0,
     color: "white",
-    padding: 8,
+    padding: 10,
     textAlign: "right",
   },
+
   rightAction: {
     backgroundColor: "blue",
     width: 150,
@@ -43,6 +47,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignSelf: "flex-end",
     padding: 20,
+    marginTop: 20,
   },
 
   completed: {
@@ -51,13 +56,16 @@ const styles = StyleSheet.create({
     padding: 5,
     color: "white",
     flexDirection: "row",
+    alignSelf: "stretch",
   },
 
   buttonContainer: {
+    flexDirection: "row",
     backgroundColor: "#39A5B0",
     borderRadius: 15,
     paddingVertical: 10,
     paddingHorizontal: 75,
+    marginVertical: 30,
   },
 
   submitButton: {
@@ -67,6 +75,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "white",
     fontWeight: "bold",
+  },
+
+  date: {
+    fontSize: 20,
+    fontWeight: "bold",
+    paddingLeft: 10,
   },
 });
 export default styles;

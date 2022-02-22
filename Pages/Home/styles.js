@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
   listContainer: {
     borderWidth: 0,
     color: "white",
+    // flex: 3,
   },
 
   listItem: {
@@ -46,6 +47,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignSelf: "flex-end",
     padding: 20,
+    marginTop: 20,
   },
 
   completed: {
@@ -58,12 +60,12 @@ const styles = StyleSheet.create({
   },
 
   buttonContainer: {
+    flexDirection: "row",
     backgroundColor: "#39A5B0",
     borderRadius: 15,
     paddingVertical: 10,
     paddingHorizontal: 75,
     marginVertical: 30,
-    marginTop: 450,
   },
 
   submitButton: {

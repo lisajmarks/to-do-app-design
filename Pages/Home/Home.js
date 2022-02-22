@@ -161,15 +161,17 @@ const Home = (props) => {
           />
         </View>
       </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          onPress={() => {
-            setShow(!show);
-            inputRef.current.focus();
-          }}
-        >
-          <Text style={styles.submitButton}>Add New </Text>
-        </TouchableOpacity>
+      <View style={{ flex: 1, justifyContent: "flex-end" }}>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            onPress={() => {
+              setShow(!show);
+              inputRef.current.focus();
+            }}
+          >
+            <Text style={styles.submitButton}>Add New </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );

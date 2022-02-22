@@ -109,7 +109,6 @@ const Score = (props) => {
                 {item.name}
               </Text>
               <Text style={[styles.rankText, styles.score]}>
-                {" "}
                 {item.doneToDos}/{item.totalToDos}
               </Text>
             </View>

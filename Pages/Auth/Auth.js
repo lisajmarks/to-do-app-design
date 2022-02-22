@@ -60,6 +60,7 @@ const Login = (props) => {
           style={{
             fontFamily: "Pacifico-Regular",
             fontSize: 96,
+            marginTop: -70,
             color: Colors.green,
           }}
         >
@@ -153,7 +154,7 @@ const Login = (props) => {
         }}
         buttonStyle={{
           backgroundColor: Colors.orange,
-          width: 155,
+          width: 170,
           height: 95,
           marginBottom: 10,
           alignSelf: "center",

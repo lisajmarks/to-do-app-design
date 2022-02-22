@@ -101,7 +101,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     height: 72,
     marginBottom: 54,
-    flexDirection: "row",
     justifyContent: "space-between",
   },
   rank: {

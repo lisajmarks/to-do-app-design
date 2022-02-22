@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
+    alignItems: "stretch",
     backgroundColor: "#F2F1F6",
   },
   swipeContainer: {
@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
   listContainer: {
     borderWidth: 0,
     color: "white",
-    width: 250,
   },
   listItem: {
     borderBottomWidth: 0,

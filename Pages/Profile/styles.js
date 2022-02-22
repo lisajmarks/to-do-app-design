@@ -16,11 +16,12 @@ const styles = StyleSheet.create({
 
   input: {
     flexDirection: "row",
-    padding: 30,
+    padding: 20,
     color: "gray",
     backgroundColor: "white",
     borderBottomWidth: 0,
     textAlign: "left",
+    width: 250,
   },
 
   myInformation: {
@@ -28,9 +29,10 @@ const styles = StyleSheet.create({
     color: "black",
     backgroundColor: "white",
     borderRadius: 0,
-    padding: 30,
+    padding: 20,
     borderBottomWidth: 0,
     textAlign: "left",
+    width: 250,
   },
 
   changePassword: {
@@ -38,9 +40,10 @@ const styles = StyleSheet.create({
     color: "black",
     backgroundColor: "white",
     borderBottomWidth: 0,
-    padding: 30,
+    padding: 20,
     textAlign: "left",
     borderRadius: 0,
+    width: 250,
   },
 });
 

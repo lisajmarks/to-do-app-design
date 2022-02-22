@@ -133,7 +133,7 @@ const Home = (props) => {
           <Ionicons name="person-circle-outline" size={35} />
         </TouchableOpacity>
       </View>
-      <Text>Today {currentDate}</Text>
+      <Text style={styles.date}>Today {currentDate}</Text>
       <FloatingInput
         show={show}
         newToDo={newToDo}

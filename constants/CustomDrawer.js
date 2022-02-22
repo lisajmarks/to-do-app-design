@@ -12,14 +12,7 @@ import {
   DrawerItemList,
 } from "@react-navigation/drawer";
 
-import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
-import { useFonts, Pacifico_400Regular } from "@expo-google-fonts/pacifico";
-import Score from "../Pages/Score/Score";
-
 const CustomDrawer = (props) => {
-  let [fontsLoaded] = useFonts({
-    Pacifico_400Regular,
-  });
   const signout = () => {
     props.userAuth.signOut();
     props.navigation.navigate("Auth");
@@ -27,20 +20,19 @@ const CustomDrawer = (props) => {
   return (
     <DrawerContentScrollView>
       <View>
-        <View>
+        <View style={{ flex: 1 }}>
           <Text
             style={{
-              marginTop: 91,
-              marginBottom: 65,
+              marginTop: 60,
+              marginBottom: 45,
               color: "#39A5B0",
-              fontSize: 47,
-              fontFamily: "Pacifico_400Regular",
-              // fontSize: 96,
+              fontSize: 35,
+              fontFamily: "Pacifico-Regular",
 
-              lineHeight: 10,
+              lineHeight: 45,
               justifyContent: "center",
               alignSelf: "center",
-              // letterSpacing: -0.08,
+              letterSpacing: -0.08,
             }}
           >
             Doozit
@@ -49,7 +41,7 @@ const CustomDrawer = (props) => {
             style={{
               color: "#000",
               fontSize: 18,
-              fontFamily: "Roboto-Medium",
+              fontFamily: "Assistant-Regular",
               marginTop: 10,
               marginBottom: 5,
               justifyContent: "center",
@@ -58,39 +50,46 @@ const CustomDrawer = (props) => {
           >
             {/* {user.providerData[0].displayName} */}
           </Text>
-          <View style={{ flexDirection: "row" }}>
-            <Text
-              style={{
-                color: "#fff",
-                // fontFamily: "Roboto-Regular",
-                marginRight: 5,
-              }}
-            >
-              Your score is 5.
-            </Text>
-            <FontAwesome5 name="coins" size={14} color="#fff" />
-          </View>
         </View>
-        <View style={{ flex: 1, backgroundColor: "#fff", paddingTop: 10 }}>
-          <DrawerItemList {...props} />
+        <View style={{ flex: 1, backgroundColor: "#fff" }}>
+          <DrawerItemList
+            style={{
+              fontSize: 24,
+              fontFamily: "Assistant-Regular",
+              lineHeight: 98.1,
+              letterSpacing: -0.08,
+              color: "#000",
+            }}
+            {...props}
+          />
         </View>
       </View>
 
-      <View style={{ padding: 20, borderTopWidth: 1, borderTopColor: "#ccc" }}>
+      <View
+        style={{
+          backgroundColor: "#ffffff",
+          borderWidth: 3,
+          width: 193,
+          height: 47,
+          borderRadius: 30,
+          justifyContent: "center",
+          alignSelf: "center",
+          marginTop: 60,
+        }}
+      >
         <TouchableOpacity onPress={signout}>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            {/* <Ionicons name="exit-outline" size={22} /> */}
-
-            <Text
-              style={{
-                fontSize: 15,
-                // fontFamily: "Roboto-Medium",
-                marginLeft: 5,
-              }}
-            >
-              Log Out
-            </Text>
-          </View>
+          <Text
+            style={{
+              fontSize: 28,
+              fontFamily: "Assistant-Regular",
+              alignSelf: "center",
+              fontWeight: 600,
+              letterSpacing: -0.08,
+              color: "#000000",
+            }}
+          >
+            Log Out
+          </Text>
         </TouchableOpacity>
       </View>
     </DrawerContentScrollView>

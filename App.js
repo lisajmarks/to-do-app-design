@@ -31,6 +31,8 @@ export default function App() {
     Assistant_600SemiBold,
     Assistant_700Bold,
     "Pacifico-Regular": require("./assets/fonts/Pacifico-Regular.ttf"),
+    "Assistant-Regular": require("./assets/fonts/Assistant-Regular.ttf"),
+
     "Inter-SemiBold": require("./assets/fonts/Inter-SemiBold.ttf"),
   });
 
@@ -40,41 +42,47 @@ export default function App() {
       else setUserId("");
     });
   }, []);
-
-  return (
-    <NavigationContainer>
-      <Drawer.Navigator
-        drawerContent={(props) => (
-          <CustomDrawer userId={userId} userAuth={userAuth} {...props} />
-        )}
-        screenOptions={{
-          drawerPosition: "right",
-          headerShown: false,
-        }}
-      >
-        <Drawer.Screen
-          name="Auth"
-          options={{
-            drawerLabel: () => null, //This will make it not display Auth on the drawer .
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <NavigationContainer>
+        <Drawer.Navigator
+          drawerContent={(props) => (
+            <CustomDrawer userId={userId} userAuth={userAuth} {...props} />
+          )}
+          screenOptions={{
+            drawerPosition: "right",
             headerShown: false,
           }}
         >
-          {(props) => <Auth userId={userId} userAuth={userAuth} {...props} />}
-        </Drawer.Screen>
-        <Drawer.Screen name="Home">
-          {(props) => <Home userId={userId} userAuth={userAuth} {...props} />}
-        </Drawer.Screen>
-        <Drawer.Screen name="Profile">
-          {(props) => (
-            <Profile userId={userId} userAuth={userAuth} {...props} />
-          )}
-        </Drawer.Screen>
-        <Drawer.Screen name="Score">
-          {(props) => <Score userId={userId} userAuth={userAuth} {...props} />}
-        </Drawer.Screen>
-      </Drawer.Navigator>
-    </NavigationContainer>
-  );
+          <Drawer.Screen
+            name="Auth"
+            options={{
+              // drawerLabel: () => null,
+              //This will make it not display Auth on the drawer .
+              headerShown: false,
+            }}
+          >
+            {(props) => <Auth userId={userId} userAuth={userAuth} {...props} />}
+          </Drawer.Screen>
+          <Drawer.Screen name="Home">
+            {(props) => <Home userId={userId} userAuth={userAuth} {...props} />}
+          </Drawer.Screen>
+          <Drawer.Screen name="Profile">
+            {(props) => (
+              <Profile userId={userId} userAuth={userAuth} {...props} />
+            )}
+          </Drawer.Screen>
+          <Drawer.Screen name="Score">
+            {(props) => (
+              <Score userId={userId} userAuth={userAuth} {...props} />
+            )}
+          </Drawer.Screen>
+        </Drawer.Navigator>
+      </NavigationContainer>
+    );
+  }
 }
 
 const styles = StyleSheet.create({

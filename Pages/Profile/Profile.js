@@ -103,44 +103,42 @@ const Profile = (props) => {
         setProfileData={setProfileData}
       />
 
-      <TextInput
-        placeholder={" My Information "}
-        style={styles.myInformation}
-      ></TextInput>
+      <View style={styles.infoContainer}>
+        <Text style={styles.myInformation}>{" My Information "}</Text>
 
-      {nameEdit ? (
-        <TextInput
-          placeholder="Name"
-          style={styles.input}
-          onChangeText={(str) => onChangeText(str, "name")}
-          onBlur={() => onSubmit()}
-          value={profiledata.name === null ? "" : profiledata.name}
-        />
-      ) : (
-        <Pressable onPress={() => setNameEdit(!nameEdit)}>
-          <Text>{profiledata.name ? profiledata.name : "Name"}</Text>
+        {nameEdit ? (
+          <TextInput
+            placeholder="Name"
+            style={styles.input}
+            onChangeText={(str) => onChangeText(str, "name")}
+            onBlur={() => onSubmit()}
+            value={profiledata.name === null ? "" : profiledata.name}
+          />
+        ) : (
+          <Pressable onPress={() => setNameEdit(!nameEdit)}>
+            <Text>{profiledata.name ? profiledata.name : "Name"}</Text>
+          </Pressable>
+        )}
+        {numberEdit ? (
+          <TextInput
+            placeholder="Phone Number"
+            style={styles.input}
+            onChangeText={(str) => onChangeText(str, "number")}
+            value={profiledata.number === null ? "" : profiledata.number}
+            onBlur={() => saveNumberToFirebase()}
+            keyboardType="numeric"
+          />
+        ) : (
+          <Pressable onPress={() => setNumberEdit(!numberEdit)}>
+            <Text>{profiledata ? profiledata.number : "Phone"}</Text>
+          </Pressable>
+        )}
+        <Pressable onPress={() => setEmailModal(!emailModal)}>
+          <Text style={styles.input}>
+            {profiledata ? profiledata.email : "No email saved"}
+          </Text>
         </Pressable>
-      )}
-      {numberEdit ? (
-        <TextInput
-          placeholder="Phone Number"
-          style={styles.input}
-          onChangeText={(str) => onChangeText(str, "number")}
-          value={profiledata.number === null ? "" : profiledata.number}
-          onBlur={() => saveNumberToFirebase()}
-          keyboardType="numeric"
-        />
-      ) : (
-        <Pressable onPress={() => setNumberEdit(!numberEdit)}>
-          <Text>{profiledata ? profiledata.number : "Phone"}</Text>
-        </Pressable>
-      )}
-      <Pressable onPress={() => setEmailModal(!emailModal)}>
-        <Text style={styles.input}>
-          {profiledata ? profiledata.email : "No email saved"}
-        </Text>
-      </Pressable>
-
+      </View>
       <Pressable onPress={() => setPasswordModal(!passwordModal)}>
         <TextInput
           placeholder={" Change Password "}

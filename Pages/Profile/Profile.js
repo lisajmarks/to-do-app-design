@@ -9,11 +9,13 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { getDatabase, ref, onValue, set, update } from "firebase/database";
-import { getAuth, updateProfile } from "firebase/auth";
+import { getAuth, updateProfile, deleteUser } from "firebase/auth";
 import styles from "./styles";
 import EmailModal from "../../constants/EmailModal";
 import PassModal from "../../constants/PassModal";
 import { Ionicons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
+
 const Profile = (props) => {
   const [nameEdit, setNameEdit] = useState(true);
   const [numberEdit, setNumberEdit] = useState(true);
@@ -78,6 +80,15 @@ const Profile = (props) => {
       name: profiledata.name,
     });
   };
+  const deleteHandler = () => {
+    deleteUser(user)
+      .then(() => {
+        console.log("User Deleted!");
+      })
+      .catch((error) => {
+        console.log("error ==>", error);
+      });
+  };
   const onChangeText = (text, field) => {
     setProfileData({ ...profiledata, [field]: text });
   };
@@ -138,13 +149,28 @@ const Profile = (props) => {
             {profiledata ? profiledata.email : "No email saved"}
           </Text>
         </Pressable>
+
+        <View style={styles.changePasswordContainer}>
+          <Pressable onPress={() => setPasswordModal(!passwordModal)}>
+            {/* <TextInput
+              placeholder={" Change Password "}
+              style={styles.changePassword}
+            ></TextInput> */}
+
+            <Text style={styles.changePassword}>{" Change Password "}</Text>
+          </Pressable>
+        </View>
+
+        <View style={styles.deleteContainer}>
+          <TouchableOpacity
+            style={styles.deleteItem}
+            onPress={() => deleteHandler()}
+          >
+            <AntDesign name="delete" size={20} color="black" />
+          </TouchableOpacity>
+          <Text style={styles.deleteProfile}>{" Delete Profile "}</Text>
+        </View>
       </View>
-      <Pressable onPress={() => setPasswordModal(!passwordModal)}>
-        <TextInput
-          placeholder={" Change Password "}
-          style={styles.changePassword}
-        ></TextInput>
-      </Pressable>
     </View>
   );
 };

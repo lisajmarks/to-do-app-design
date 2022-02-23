@@ -13,7 +13,9 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     padding: 30,
   },
-
+  inputContainer: {
+    borderWidth: 1,
+  },
   input: {
     flexDirection: "row",
     padding: 20,
@@ -21,7 +23,8 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     textAlign: "left",
     width: 250,
-    borderRadius: 0,
+    borderRadius: 2,
+    borderBottomWidth: 1,
   },
 
   myInformation: {
@@ -35,6 +38,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontFamily: "Assistant_400Regular",
     fontWeight: "bold",
+    marginBottom: 0,
   },
 
   changePassword: {

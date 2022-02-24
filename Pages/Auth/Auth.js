@@ -68,7 +68,6 @@ const Login = (props) => {
         </Text>
       </View>
 
-      {/* <Text>Create your account</Text> */}
       <View style={{ flex: 1 }}>
         <LabeledInput
           label=""
@@ -154,8 +153,8 @@ const Login = (props) => {
         }}
         buttonStyle={{
           backgroundColor: Colors.orange,
-          width: 170,
-          height: 95,
+          width: 275,
+          height: 60,
           marginBottom: 10,
           alignSelf: "center",
         }}

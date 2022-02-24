@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flexDirection: "row",
-    padding: 18,
+    padding: 19,
     borderColor: "#ADB3BC",
     color: "#ADB3BC",
     backgroundColor: "white",
@@ -64,11 +64,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     // borderWidth: borderBottomWidth: 1,us: 0,
     // width: 150,
-    paddingBottom: 30,
-    paddingLeft: 5,
+    paddingBottom: 40,
+    paddingLeft: 4,
     fontFamily: "Assistant_400Regular",
     fontWeight: "bold",
-    fontSize: 18,
+    fontSize: 20,
     backgroundColor: "white",
   },
 });

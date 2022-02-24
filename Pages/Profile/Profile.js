@@ -166,7 +166,7 @@ const Profile = (props) => {
             style={styles.deleteItem}
             onPress={() => deleteHandler()}
           >
-            <AntDesign name="delete" size={20} color="black" />
+            <AntDesign name="delete" size={24} color="black" />
           </TouchableOpacity>
           <Text style={styles.deleteProfile}>{" Delete Profile "}</Text>
         </View>

@@ -42,8 +42,12 @@ const Score = (props) => {
       setAllProfiles(result);
       setHighScore(result[0].doneToDos);
       setFirstPlace(result[0].name);
-      setSecondPlace(result[1].name);
-      setThirdPlace(result[2].name);
+      if (result.length > 1) {
+        setSecondPlace(result[1].name);
+        setThirdPlace(result[2].name);
+      } else {
+        console.log("Error setting ranks");
+      }
     });
   }, []);
 

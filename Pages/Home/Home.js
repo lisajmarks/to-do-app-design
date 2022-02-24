@@ -133,7 +133,7 @@ const Home = (props) => {
           <Ionicons name="person-circle-outline" size={35} />
         </TouchableOpacity>
       </View>
-      <Text>Today {currentDate}</Text>
+      <Text style={styles.date}>Today {currentDate}</Text>
       <FloatingInput
         show={show}
         newToDo={newToDo}
@@ -152,7 +152,10 @@ const Home = (props) => {
           />
         </View>
         <View style={styles.listContainer}>
-          <Text style={styles.completed}> Completed </Text>
+          <View style={{ alignSelf: "stretch", backgroundColor: "#656565" }}>
+            <Text style={styles.completed}> Completed </Text>
+          </View>
+
           <FlatList
             data={completedToDos}
             renderItem={({ item }) => (
@@ -161,15 +164,30 @@ const Home = (props) => {
           />
         </View>
       </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          onPress={() => {
-            setShow(!show);
-            inputRef.current.focus();
-          }}
-        >
-          <Text style={styles.submitButton}>Add New </Text>
-        </TouchableOpacity>
+      <View
+        style={{
+          // position: "absolute",
+          // height: 150,
+          marginTop: -250,
+          flex: 1,
+          justifyContent: "flex-end",
+          alignSelf: "center",
+
+          // alignItems: "flex-end",
+          // justifyContent: "flex-end",
+          // backgroundColor: "red",
+        }}
+      >
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            onPress={() => {
+              setShow(!show);
+              inputRef.current.focus();
+            }}
+          >
+            <Text style={styles.submitButton}>Add New </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );

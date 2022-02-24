@@ -54,6 +54,7 @@ const CustomDrawer = (props) => {
         <View style={{ flex: 1, backgroundColor: "#fff" }}>
           <DrawerItemList
             style={{
+              marginTop: -10,
               fontSize: 24,
               fontFamily: "Assistant-Regular",
               lineHeight: 98.1,
@@ -74,7 +75,7 @@ const CustomDrawer = (props) => {
           borderRadius: 30,
           justifyContent: "center",
           alignSelf: "center",
-          marginTop: 60,
+          marginTop: 30,
         }}
       >
         <TouchableOpacity onPress={signout}>

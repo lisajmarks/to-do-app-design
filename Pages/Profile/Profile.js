@@ -104,7 +104,7 @@ const Profile = (props) => {
       />
 
       <TextInput
-        placeholder={" MY INFORMATION "}
+        placeholder={" My Information "}
         style={styles.myInformation}
       ></TextInput>
 
@@ -140,10 +140,10 @@ const Profile = (props) => {
           {profiledata ? profiledata.email : "No email saved"}
         </Text>
       </Pressable>
-      {/* <TextInput placeholder={" Email "} style={styles.input}></TextInput> */}
+
       <Pressable onPress={() => setPasswordModal(!passwordModal)}>
         <TextInput
-          placeholder={" CHANGE PASSWORD "}
+          placeholder={" Change Password "}
           style={styles.changePassword}
         ></TextInput>
       </Pressable>

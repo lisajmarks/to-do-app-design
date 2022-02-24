@@ -12,6 +12,7 @@ const FloatingInput = ({ show, newToDo, setNewToDo, inputRef, onAdd }) => {
             left: 0,
             width: 250,
             height: 50,
+
             backgroundColor: "#F2F1F6",
             zIndex: 10,
           }}
@@ -28,6 +29,7 @@ const FloatingInput = ({ show, newToDo, setNewToDo, inputRef, onAdd }) => {
           height: 50,
           width: 250,
           position: "absolute",
+          textAlign: "center",
           top: 0,
           left: 0,
         }}

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import styles from "../Pages/Profile/styles";
 
 import {
   StyleSheet,
   Text,
   View,
   Modal,
+  TouchableOpacity,
   Pressable,
   TextInput,
   Button,
@@ -55,22 +57,88 @@ const EmailModal = ({
         Alert.alert("Modal has been closed.");
       }}
     >
-      <View>
-        <View>
-          <Text>Changing Email</Text>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <View
+          style={{
+            width: 300,
+            height: 400,
+          }}
+        >
+          <Text style={styles.myInformation}>Change Email</Text>
           <TextInput
             placeholder="Enter new email"
-            style={styles.input}
+            style={[styles.input, { width: 275 }]}
             onChangeText={(input) => setForm({ ...form, email: input })}
           />
           <TextInput
             placeholder="Enter password"
-            style={styles.input}
+            style={[styles.input, { width: 275 }]}
             onChangeText={(input) => setForm({ ...form, password: input })}
           />
+          <View
+            style={{
+              marginVertical: 100,
+              backgroundColor: "#ffffff",
+              borderWidth: 3,
+              width: 193,
+              height: 47,
+              borderRadius: 30,
+              justifyContent: "center",
+              alignSelf: "center",
+              marginTop: 30,
+            }}
+          >
+            <TouchableOpacity onPress={() => submitNewEmail()}>
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontFamily: "Assistant-Regular",
+                  alignSelf: "center",
+                  // fontWeight: 600,
+                  letterSpacing: -0.08,
+                  color: "#000000",
+                  // marginTop: 40,
+                }}
+              >
+                Update Email
+              </Text>
+            </TouchableOpacity>
+          </View>
 
-          <Button onPress={() => submitNewEmail()} title="Update Email" />
-          <Button onPress={() => setEmailModal(!emailModal)} title="Cancel" />
+          <View
+            style={{
+              backgroundColor: "#ffffff",
+              borderWidth: 3,
+              width: 193,
+              height: 47,
+              borderRadius: 30,
+
+              justifyContent: "center",
+              alignSelf: "center",
+              marginTop: 10,
+            }}
+          >
+            <TouchableOpacity onPress={() => setEmailModal(!emailModal)}>
+              <Text
+                style={{
+                  fontSize: 28,
+                  fontFamily: "Assistant-Regular",
+                  alignSelf: "center",
+                  letterSpacing: -0.08,
+                  color: "#000000",
+                }}
+              >
+                Cancel
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </Modal>
@@ -78,5 +146,3 @@ const EmailModal = ({
 };
 
 export default EmailModal;
-
-const styles = StyleSheet.create({});

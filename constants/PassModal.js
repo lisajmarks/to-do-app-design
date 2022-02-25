@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import styles from "../Pages/Profile/styles";
 
 import {
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
   Modal,
   Pressable,
@@ -58,23 +60,92 @@ const PassModal = ({
         Alert.alert("Modal has been closed.");
       }}
     >
-      <View>
-        <View>
-          <Text>Changing Password</Text>
+      <View
+        // style={styles.infoContainer}
+        style={{
+          flex: 1,
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <View
+          style={{
+            width: 300,
+            height: 400,
+          }}
+        >
+          <Text style={styles.myInformation}>Change Password</Text>
           <TextInput
+            style={[styles.input, { width: 275 }]}
             placeholder="Old Password"
             onChangeText={(input) => setForm({ ...form, oldPassword: input })}
           />
           <TextInput
+            style={[styles.input, { width: 275 }]}
             placeholder="New Password"
             onChangeText={(input) => setForm({ ...form, newPassword: input })}
           />
 
-          <Button onPress={() => submitNewPassword()} title="Update Password" />
-          <Button
-            onPress={() => setPasswordModal(!passwordModal)}
-            title="Cancel"
-          />
+          <View
+            style={{
+              marginVertical: 100,
+              backgroundColor: "#ffffff",
+              borderWidth: 3,
+              width: 193,
+              height: 47,
+              borderRadius: 30,
+              justifyContent: "center",
+              alignSelf: "center",
+              marginTop: 30,
+            }}
+          >
+            <TouchableOpacity onPress={() => submitNewPassword()}>
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontFamily: "Assistant-Regular",
+                  alignSelf: "center",
+                  // fontWeight: 600,
+                  letterSpacing: -0.08,
+                  color: "#000000",
+                  // marginTop: 40,
+                }}
+              >
+                Update Password
+              </Text>
+            </TouchableOpacity>
+          </View>
+
+          <View
+            style={{
+              backgroundColor: "#ffffff",
+              borderWidth: 3,
+              width: 193,
+              height: 47,
+              borderRadius: 30,
+
+              justifyContent: "center",
+              alignSelf: "center",
+              marginTop: 10,
+            }}
+          >
+            <TouchableOpacity onPress={() => setPasswordModal(!passwordModal)}>
+              <Text
+                style={{
+                  fontSize: 28,
+                  fontFamily: "Assistant-Regular",
+                  alignSelf: "center",
+                  // fontWeight: 600,
+                  letterSpacing: -0.08,
+                  color: "#000000",
+                  // marginTop: 150,
+                }}
+              >
+                Cancel
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </Modal>
@@ -82,5 +153,3 @@ const PassModal = ({
 };
 
 export default PassModal;
-
-const styles = StyleSheet.create({});

@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignSelf: "flex-end",
     padding: 20,
+    marginTop: 30,
   },
   title: {
     fontSize: 24,
@@ -101,7 +102,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     height: 72,
     marginBottom: 54,
-    flexDirection: "row",
     justifyContent: "space-between",
   },
   rank: {

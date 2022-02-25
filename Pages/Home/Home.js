@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   FlatList,
   Pressable,
+  ScrollView,
 } from "react-native";
 import {
   getDatabase,
@@ -133,51 +134,39 @@ const Home = (props) => {
           <Ionicons name="person-circle-outline" size={35} />
         </TouchableOpacity>
       </View>
-      <Text style={styles.date}>Today {currentDate}</Text>
-      <FloatingInput
-        show={show}
-        newToDo={newToDo}
-        setNewToDo={setNewToDo}
-        inputRef={inputRef}
-        onAdd={onAdd}
-      />
-      <View>
-        <View style={styles.listContainer}>
-          <FlatList
-            data={toDos}
-            renderItem={({ item }) => (
-              <TaskItem item={item} db={db} userId={props.userId} />
-            )}
-            //For each item inside todos put it inside TaskItem as a prop
-          />
-        </View>
-        <View style={styles.listContainer}>
-          <View style={{ alignSelf: "stretch", backgroundColor: "#656565" }}>
-            <Text style={styles.completed}> Completed </Text>
+
+      <ScrollView style={{ flex: 0.8 }}>
+        <Text style={styles.date}>Today {currentDate}</Text>
+        <FloatingInput
+          show={show}
+          newToDo={newToDo}
+          setNewToDo={setNewToDo}
+          inputRef={inputRef}
+          onAdd={onAdd}
+        />
+        <View>
+          <View style={styles.listContainer}>
+            <FlatList
+              data={toDos}
+              renderItem={({ item }) => (
+                <TaskItem item={item} db={db} userId={props.userId} />
+              )}
+              //For each item inside todos put it inside TaskItem as a prop
+            />
           </View>
-
-          <FlatList
-            data={completedToDos}
-            renderItem={({ item }) => (
-              <TaskItem item={item} db={db} userId={props.userId} />
-            )}
-          />
+          <View style={styles.listContainer}>
+            <Text style={styles.completed}> Completed </Text>
+            <FlatList
+              data={completedToDos}
+              renderItem={({ item }) => (
+                <TaskItem item={item} db={db} userId={props.userId} />
+              )}
+            />
+          </View>
         </View>
-      </View>
-      <View
-        style={{
-          // position: "absolute",
-          // height: 150,
-          marginTop: -250,
-          flex: 1,
-          justifyContent: "flex-end",
-          alignSelf: "center",
+      </ScrollView>
 
-          // alignItems: "flex-end",
-          // justifyContent: "flex-end",
-          // backgroundColor: "red",
-        }}
-      >
+      <View style={{ flex: 0.2, justifyContent: "flex-end" }}>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             onPress={() => {

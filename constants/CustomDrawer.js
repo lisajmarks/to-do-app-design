@@ -48,7 +48,7 @@ const CustomDrawer = (props) => {
               alignSelf: "center",
             }}
           >
-            {/* {user.providerData[0].displayName} */}
+            {/* {allProfiles.name} */}
           </Text>
         </View>
         <View style={{ flex: 1, backgroundColor: "#fff" }}>
@@ -84,7 +84,7 @@ const CustomDrawer = (props) => {
               fontSize: 28,
               fontFamily: "Assistant-Regular",
               alignSelf: "center",
-              // fontWeight: 600,
+              //fontWeight: 600,
               letterSpacing: -0.08,
               color: "#000000",
             }}

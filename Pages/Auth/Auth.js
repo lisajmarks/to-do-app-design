@@ -68,7 +68,6 @@ const Login = (props) => {
         </Text>
       </View>
 
-      {/* <Text>Create your account</Text> */}
       <View style={{ flex: 1 }}>
         <LabeledInput
           label=""

@@ -8,12 +8,21 @@ import {
   Modal,
   TouchableOpacity,
 } from "react-native";
-import { getDatabase, ref, onValue, set, update } from "firebase/database";
-import { getAuth, updateProfile } from "firebase/auth";
+import {
+  getDatabase,
+  ref,
+  onValue,
+  set,
+  update,
+  remove,
+} from "firebase/database";
+import { getAuth, updateProfile, deleteUser } from "firebase/auth";
 import styles from "./styles";
 import EmailModal from "../../constants/EmailModal";
 import PassModal from "../../constants/PassModal";
 import { Ionicons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
+
 const Profile = (props) => {
   const [nameEdit, setNameEdit] = useState(true);
   const [numberEdit, setNumberEdit] = useState(true);
@@ -64,6 +73,9 @@ const Profile = (props) => {
     });
   };
   const onSubmit = () => {
+    update(profileRef, {
+      name: profiledata.name,
+    });
     updateProfile(user, {
       displayName: profiledata.name,
     })
@@ -74,9 +86,24 @@ const Profile = (props) => {
       .catch((error) => {
         console.log("error ==>", error);
       });
-    update(profileRef, {
-      name: profiledata.name,
-    });
+  };
+  const deleteHandler = () => {
+    const todoRef = ref(db, "toDoList/" + props.userId);
+    deleteUser(user)
+      .then(() => {
+        updateProfile(user, {
+          displayName: null,
+          email: null,
+          phoneNumber: null,
+          uid: null,
+        });
+        console.log("User Deleted!");
+      })
+      .catch((error) => {
+        console.log("error ==>", error);
+      });
+    remove(profileRef);
+    remove(todoRef);
   };
   const onChangeText = (text, field) => {
     setProfileData({ ...profiledata, [field]: text });
@@ -103,50 +130,63 @@ const Profile = (props) => {
         setProfileData={setProfileData}
       />
 
-      <TextInput
-        placeholder={" My Information "}
-        style={styles.myInformation}
-      ></TextInput>
+      <View style={styles.infoContainer}>
+        <Text style={styles.myInformation}>{" My Information "}</Text>
 
-      {nameEdit ? (
-        <TextInput
-          placeholder="Name"
-          style={styles.input}
-          onChangeText={(str) => onChangeText(str, "name")}
-          onBlur={() => onSubmit()}
-          value={profiledata.name === null ? "" : profiledata.name}
-        />
-      ) : (
-        <Pressable onPress={() => setNameEdit(!nameEdit)}>
-          <Text>{profiledata.name ? profiledata.name : "Name"}</Text>
+        {nameEdit ? (
+          <TextInput
+            placeholder="Name"
+            style={styles.input}
+            onChangeText={(str) => onChangeText(str, "name")}
+            onBlur={() => onSubmit()}
+            value={profiledata.name === null ? "" : profiledata.name}
+          />
+        ) : (
+          <Pressable onPress={() => setNameEdit(!nameEdit)}>
+            <Text>{profiledata.name}</Text>
+          </Pressable>
+        )}
+        {numberEdit ? (
+          <TextInput
+            placeholder="Phone Number"
+            style={styles.input}
+            onChangeText={(str) => onChangeText(str, "number")}
+            value={profiledata.number === null ? "" : profiledata.number}
+            onBlur={() => saveNumberToFirebase()}
+            keyboardType="numeric"
+          />
+        ) : (
+          <Pressable onPress={() => setNumberEdit(!numberEdit)}>
+            <Text>{profiledata ? profiledata.number : "Phone"}</Text>
+          </Pressable>
+        )}
+        <Pressable onPress={() => setEmailModal(!emailModal)}>
+          <Text style={styles.input}>
+            {profiledata ? profiledata.email : "No email saved"}
+          </Text>
         </Pressable>
-      )}
-      {numberEdit ? (
-        <TextInput
-          placeholder="Phone Number"
-          style={styles.input}
-          onChangeText={(str) => onChangeText(str, "number")}
-          value={profiledata.number === null ? "" : profiledata.number}
-          onBlur={() => saveNumberToFirebase()}
-          keyboardType="numeric"
-        />
-      ) : (
-        <Pressable onPress={() => setNumberEdit(!numberEdit)}>
-          <Text>{profiledata ? profiledata.number : "Phone"}</Text>
-        </Pressable>
-      )}
-      <Pressable onPress={() => setEmailModal(!emailModal)}>
-        <Text style={styles.input}>
-          {profiledata ? profiledata.email : "No email saved"}
-        </Text>
-      </Pressable>
 
-      <Pressable onPress={() => setPasswordModal(!passwordModal)}>
-        <TextInput
-          placeholder={" Change Password "}
-          style={styles.changePassword}
-        ></TextInput>
-      </Pressable>
+        <View style={styles.changePasswordContainer}>
+          <Pressable onPress={() => setPasswordModal(!passwordModal)}>
+            {/* <TextInput
+              placeholder={" Change Password "}
+              style={styles.changePassword}
+            ></TextInput> */}
+
+            <Text style={styles.changePassword}>{" Change Password "}</Text>
+          </Pressable>
+        </View>
+
+        <View style={styles.deleteContainer}>
+          <TouchableOpacity
+            style={styles.deleteItem}
+            onPress={() => deleteHandler()}
+          >
+            <AntDesign name="delete" size={24} color="black" />
+          </TouchableOpacity>
+          <Text style={styles.deleteProfile}>{" Delete Profile "}</Text>
+        </View>
+      </View>
     </View>
   );
 };

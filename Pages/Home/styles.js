@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignSelf: "flex-end",
     padding: 20,
-    marginTop: 20,
+    marginTop: 30,
   },
 
   completed: {
@@ -56,19 +56,17 @@ const styles = StyleSheet.create({
     padding: 5,
     color: "white",
     flexDirection: "row",
-    alignSelf: "center",
+    alignSelf: "stretch",
   },
 
   buttonContainer: {
     flexDirection: "row",
-    alignSelf: "center",
     backgroundColor: "#39A5B0",
     borderRadius: 15,
     paddingVertical: 10,
     paddingHorizontal: 75,
-    textAlignVertical: "center",
-    height: 60,
-    marginVertical: 40,
+    marginVertical: 30,
+    alignSelf: "center",
   },
 
   submitButton: {

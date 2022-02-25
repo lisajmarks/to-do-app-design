@@ -42,6 +42,7 @@ export default function App() {
       else setUserId("");
     });
   }, []);
+
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
@@ -59,7 +60,7 @@ export default function App() {
           <Drawer.Screen
             name="Auth"
             options={{
-              // drawerLabel: () => null,
+              drawerLabel: () => null,
               //This will make it not display Auth on the drawer .
               headerShown: false,
             }}
@@ -84,12 +85,3 @@ export default function App() {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

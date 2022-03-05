@@ -53,17 +53,13 @@ const styles = StyleSheet.create({
     textAlign: "left",
   },
   changePasswordContainer: {
-    //marginTop: 2,
     marginLeft: 1,
     marginRight: 1,
     padding: 2,
-    //borderBottom: 2,
   },
 
   deleteContainer: {
     flexDirection: "row",
-    // borderWidth: borderBottomWidth: 1,us: 0,
-    // width: 150,
     paddingBottom: 40,
     paddingLeft: 4,
     fontFamily: "Assistant_400Regular",

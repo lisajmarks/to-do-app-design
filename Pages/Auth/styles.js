@@ -15,9 +15,10 @@ const styles = StyleSheet.create({
     color: Colors.black,
   },
   header: {
+    // fontFamily: Pacifico_400Regular,
     marginTop: 100,
-    fontSize: 96,
-
+    // fontSize: 96,
+    // color: Colors.green,
     alignSelf: "center",
   },
   button: {
@@ -32,12 +33,10 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: "#EEEBDD",
-
     margin: 10,
     borderWidth: 1,
     borderColor: "black",
-    width: 307,
-    height: 70,
+    width: 150,
     padding: 5,
   },
 });

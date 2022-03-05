@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import Button from "../../constants/Button";
 import LabeledInput from "../../constants/LabeledInput";
 import Colors from "../../constants/Colors";
 import validator from "validator";
+import doozit from "./doozit.png";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -56,16 +57,7 @@ const Login = (props) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text
-          style={{
-            fontFamily: "Pacifico-Regular",
-            fontSize: 96,
-            marginTop: -70,
-            color: Colors.green,
-          }}
-        >
-          Doozit
-        </Text>
+        <Image source={doozit} />
       </View>
 
       <View style={{ flex: 1 }}>

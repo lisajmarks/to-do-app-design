@@ -12,7 +12,6 @@ const FloatingInput = ({ show, newToDo, setNewToDo, inputRef, onAdd }) => {
             left: 0,
             width: 250,
             height: 50,
-
             backgroundColor: "#F2F1F6",
             zIndex: 10,
           }}

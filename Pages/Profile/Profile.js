@@ -55,6 +55,7 @@ const Profile = (props) => {
       setProfileData({
         ...profiledata,
         number: data !== null ? data.number : "",
+        name: data !== null ? data.name : "",
       });
     });
   }, []);

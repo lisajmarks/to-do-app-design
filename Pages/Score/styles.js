@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     height: 72,
     marginBottom: 54,
-    justifyContent: "space-between",
+    justifyContent: "space-evenly",
   },
   rank: {
     borderColor: "#d3d3d3",

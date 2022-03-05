@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     color: "#000000",
     backgroundColor: "white",
     borderRadius: 0,
-    padding: 10,
+    padding: 5,
     textAlign: "left",
     fontSize: 16,
     fontFamily: "Assistant_400Regular",
@@ -53,11 +53,11 @@ const styles = StyleSheet.create({
     textAlign: "left",
   },
   changePasswordContainer: {
-    //marginTop: 2,
+    // marginTop: 10,
     marginLeft: 1,
     marginRight: 1,
     padding: 2,
-    //borderBottom: 2,
+    // borderBottom: 0,
   },
 
   deleteContainer: {

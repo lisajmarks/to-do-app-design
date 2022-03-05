@@ -84,7 +84,7 @@ const CustomDrawer = (props) => {
               fontSize: 28,
               fontFamily: "Assistant-Regular",
               alignSelf: "center",
-              //fontWeight: 600,
+              // fontWeight: 600,
               letterSpacing: -0.08,
               color: "#000000",
             }}

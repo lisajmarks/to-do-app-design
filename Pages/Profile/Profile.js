@@ -8,14 +8,7 @@ import {
   Modal,
   TouchableOpacity,
 } from "react-native";
-import {
-  getDatabase,
-  ref,
-  onValue,
-  set,
-  update,
-  remove,
-} from "firebase/database";
+import { getDatabase, ref, onValue, set, update } from "firebase/database";
 import { getAuth, updateProfile, deleteUser } from "firebase/auth";
 import styles from "./styles";
 import EmailModal from "../../constants/EmailModal";
@@ -74,9 +67,6 @@ const Profile = (props) => {
     });
   };
   const onSubmit = () => {
-    update(profileRef, {
-      name: profiledata.name,
-    });
     updateProfile(user, {
       displayName: profiledata.name,
     })
@@ -87,24 +77,18 @@ const Profile = (props) => {
       .catch((error) => {
         console.log("error ==>", error);
       });
+    update(profileRef, {
+      name: profiledata.name,
+    });
   };
   const deleteHandler = () => {
-    const todoRef = ref(db, "toDoList/" + props.userId);
     deleteUser(user)
       .then(() => {
-        updateProfile(user, {
-          displayName: null,
-          email: null,
-          phoneNumber: null,
-          uid: null,
-        });
         console.log("User Deleted!");
       })
       .catch((error) => {
         console.log("error ==>", error);
       });
-    remove(profileRef);
-    remove(todoRef);
   };
   const onChangeText = (text, field) => {
     setProfileData({ ...profiledata, [field]: text });
@@ -144,7 +128,7 @@ const Profile = (props) => {
           />
         ) : (
           <Pressable onPress={() => setNameEdit(!nameEdit)}>
-            <Text>{profiledata.name}</Text>
+            <Text>{profiledata.name ? profiledata.name : "Name"}</Text>
           </Pressable>
         )}
         {numberEdit ? (

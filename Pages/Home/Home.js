@@ -135,7 +135,7 @@ const Home = (props) => {
         </TouchableOpacity>
       </View>
 
-      <ScrollView style={{ flex: 0.8 }}>
+      <View style={{ flex: 0.8 }}>
         <Text style={styles.date}>Today {currentDate}</Text>
         <FloatingInput
           show={show}
@@ -164,7 +164,7 @@ const Home = (props) => {
             />
           </View>
         </View>
-      </ScrollView>
+      </View>
 
       <View style={{ flex: 0.2, justifyContent: "flex-end" }}>
         <View style={styles.buttonContainer}>

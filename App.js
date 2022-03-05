@@ -13,7 +13,7 @@ import {
 } from "@expo-google-fonts/assistant";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
-
+import LoadingScene from "./Pages/LoadingPage/LoadingScene";
 import Profile from "./Pages/Profile/Profile";
 import Auth from "./Pages/Auth/Auth";
 import Home from "./Pages/Home/Home";
@@ -42,7 +42,6 @@ export default function App() {
       else setUserId("");
     });
   }, []);
-
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
@@ -57,6 +56,18 @@ export default function App() {
             headerShown: false,
           }}
         >
+          <Drawer.Screen
+            name="loading"
+            options={{
+              drawerLabel: () => null,
+              //This will make it not display Auth on the drawer .
+              headerShown: false,
+            }}
+          >
+            {(props) => (
+              <LoadingScene userId={userId} userAuth={userAuth} {...props} />
+            )}
+          </Drawer.Screen>
           <Drawer.Screen
             name="Auth"
             options={{
@@ -85,3 +96,12 @@ export default function App() {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});

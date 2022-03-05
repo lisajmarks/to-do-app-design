@@ -102,6 +102,10 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     height: 72,
     marginBottom: 54,
+<<<<<<< HEAD
+=======
+    flexDirection: "row",
+>>>>>>> 66f79c46a3fbb3e10a134c8d05087f00a4004221
     justifyContent: "space-evenly",
   },
   rank: {
